@@ -304,7 +304,7 @@ export default class CommentForm extends Component {
                         : null
                 }
                 {/*未登录说明 end*/}
-                <View style={styles.commentTab}>
+                {/*<View style={styles.commentTab}>
                     <TouchableOpacity style={[styles.tab, this.state.comformType == 'Single' ? styles.tabActive : null]}
                         onPress={() => {
                             this.setState({
@@ -336,7 +336,7 @@ export default class CommentForm extends Component {
                     >
                         <Text style={[styles.tabText, this.state.comformType == 'double' ? styles.tabTextActive : null]}>多账号</Text>
                     </TouchableOpacity>
-                </View>
+                </View>*/}
                 {/* 单多账号Tab end */}
                 {commentForms}
                 {this.state.comformType != 'Single' ?
@@ -580,37 +580,37 @@ export default class CommentForm extends Component {
         for (let j = 0; j < listData.length; j++) {
             // userid 判断
             if (comment_field.indexOf('c_userid') >= 0) {
-                if (FormValidation.empty(listData[j].userid, '账号' + (j + 1) + ':' + '用户ID不能为空') == false) {
+                if (FormValidation.empty(listData[j].userid, '用户ID不能为空') == false) {
                     return;
                 }
             }
             // phone 判断
             if (comment_field.indexOf('c_phone') >= 0) {
-                if (FormValidation.phoneValid(listData[j].phone, '账号' + (j + 1) + ':') == false) {
+                if (FormValidation.phoneValid(listData[j].phone, '') == false) {
                     return;
                 }
             }
             // realname 判断
             if (comment_field.indexOf('c_username') >= 0) {
-                if (FormValidation.empty(listData[j].realname, '账号' + (j + 1) + ':' + '真实姓名不能为空') == false) {
+                if (FormValidation.empty(listData[j].realname,'真实姓名不能为空') == false) {
                     return;
                 }
             }
             // plan 判断
             if (listData[j].plan == '请选择') {
-                Alert.alert('提示', '账号' + (j + 1) + ':' + '请选择方案')
+                Alert.alert('提示', '请选择方案')
                 return;
             }
             // investdate 判断
             if (comment_field.indexOf('investdate') >= 0) {
-                if (FormValidation.empty(listData[j].investdate, '账号' + (j + 1) + ':' + '投资日期不能为空') == false) {
+                if (FormValidation.empty(listData[j].investdate, '投资日期不能为空') == false) {
                     return;
                 }
             }
             // 投资截图判断
             if (comment_field.indexOf('img_invest') >= 0) {
                 if (listData[j].fileUri == 'http://www.fanlimofang.com/images/uploadimg.jpg') {
-                    Alert.alert('提示', '账号' + (j + 1) + ':' + '请上传投资截图')
+                    Alert.alert('提示', '请上传投资截图')
                     return;
                 }
             }

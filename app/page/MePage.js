@@ -8,7 +8,7 @@ import Login from '../page/LoginPage'
 import ActiveRecord from '../page/ActiveRecord'
 import ChangePassword from '../page/ChangePassword'
 import UserSet from '../page/UserSet'
-
+import MainPage from '../page/MainPage'
 
 class List extends Component {
     render() {
@@ -100,7 +100,7 @@ export default class MePage extends Component {
                         navigator={this.props.navigator}
                         component={UserSet}
                     />
-                    <List text={'系统设置'} iconName={'set'} iconSize={18} iconColor={'#999'} />
+                    {/*<List text={'系统设置'} iconName={'set'} iconSize={18} iconColor={'#999'} />*/}
                 </View>
                 {logoutView}
             </View>
@@ -126,6 +126,9 @@ export default class MePage extends Component {
         signState = null;
         this.setState({
             ref: !this.state.ref
+        })
+        this.props.navigator.replacePrevious({
+            component: MainPage
         })
     }
 

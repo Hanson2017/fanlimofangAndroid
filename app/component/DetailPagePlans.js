@@ -46,23 +46,23 @@ export default class Plans extends Component {
             <View style={styles.content}>
 
                 <View style={styles.hd}>
-                    <Text style={styles.hdText}>第{periods}期</Text>
+                    <Text style={styles.hdText}>第{periods +''}期</Text>
                 </View>
                 <View style={styles.row}>
                     <Text style={styles.rowLabel}>总收益:</Text>
-                    <Text style={styles.rowCon}>{plans.rebate}元</Text>
+                    <Text style={styles.rowCon}>{plans.rebate+''}元</Text>
                 </View>
                 <View style={styles.row}>
                     <Text style={styles.rowLabel}>年化:</Text>
-                    <Text style={styles.rowCon}>{plans.rate}%</Text>
+                    <Text style={styles.rowCon}>{plans.rate+''}%</Text>
                 </View>
                 <View style={styles.row}>
                     <Text style={styles.rowLabel}>赔付率:</Text>
-                    <Text style={styles.rowCon}>{protectlv}%（{plans.protectamount}元）</Text>
+                    <Text style={styles.rowCon}>{protectlv+''}%（{plans.protectamount+''}元）</Text>
                 </View>
                 <View style={styles.row}>
                     <Text style={styles.rowLabel}>保障时间:</Text>
-                    <Text style={styles.rowCon}>{plans.protectday}天（从投资当天结算）</Text>
+                    <Text style={styles.rowCon}>{plans.protectday+''}天（从投资当天结算）</Text>
                 </View>
                 <View style={styles.row}>
                     <Text style={{color:'#666'}}>投资流程：</Text>

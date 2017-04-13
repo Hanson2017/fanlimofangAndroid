@@ -9,6 +9,7 @@
   "dependencies": {
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.0",
+    "react-native-code-push": "^2.0.2-beta",
     "react-native-image-picker": "^0.26.2",
     "react-native-qq": "^2.0.5",
     "react-native-scrollable-tab-view": "^0.6.0",

@@ -11,10 +11,9 @@ import TextInputList from '../component/TextInputList'
 import SubmitBtn from '../component/SubmitBtn'
 import FormValidation from '../util/FormValidation'
 import Title from '../component/Title';
-
 import ThirdLogin from '../util/ThirdLogin'
 
-
+import MainPage from '../page/MainPage'
 
 export default class Login extends Component {
     constructor(props) {
@@ -29,7 +28,7 @@ export default class Login extends Component {
         return (
             <View style={styles.container}>
 
-                <Header navigator={this.props.navigator} headerText={'用户登录'} />
+                <Header navigator={this.props.navigator} headerText={'用户登录'} backView={'null'} />
                 <View style={styles.content}>
                     <View style={styles.FormContainer}>
 
@@ -47,10 +46,10 @@ export default class Login extends Component {
                     <View style={{ marginTop: 20, }}>
                         <Title title={'快捷登录'} />
                         <View style={styles.otherLogin}>
-                            <TouchableOpacity onPress={ThirdLogin._wechatlogin.bind(this,this)} activeOpacity={0.7}>
+                            <TouchableOpacity onPress={ThirdLogin._wechatlogin.bind(this, this)} activeOpacity={0.7}>
                                 <Icon name={'wechat'} size={36} color={'#00d10d'} />
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ marginLeft: 40 }} onPress={ThirdLogin._qqlogin.bind(this,this)} activeOpacity={0.7}>
+                            <TouchableOpacity style={{ marginLeft: 40 }} onPress={ThirdLogin._qqlogin.bind(this, this)} activeOpacity={0.7}>
                                 <Icon name={'qq'} size={36} color={'#45b7ee'} />
                             </TouchableOpacity>
                         </View>
@@ -60,7 +59,7 @@ export default class Login extends Component {
             </View>
         )
     }
-   
+
     _onChangeTextUserName(text) {
         this.setState({
             userName: text
@@ -119,8 +118,10 @@ export default class Login extends Component {
             .catch((error) => { console.error(error) })
     }
     goBackSuccee() {
-        DeviceEventEmitter.emit('loginState', '登录好了')
-        this.props.navigator.pop();
+        DeviceEventEmitter.emit('loginState', '登录好了')        
+        this.props.navigator.replacePrevious({
+            component: MainPage
+        })
     }
 
 

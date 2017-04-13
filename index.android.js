@@ -11,6 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
+import codePush from 'react-native-code-push'
 import Navigation from '../fanlimofang/app/config/entry'
 
 export default class fanlimofang extends Component {
@@ -19,7 +20,9 @@ export default class fanlimofang extends Component {
       <Navigation />
     );
   }
-  
+  componentDidMount(){
+    codePush.sync()
+  }
  
 }
 

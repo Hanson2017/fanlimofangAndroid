@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, Image, View, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, DeviceEventEmitter, RefreshControl, ActivityIndicator, Linking ,Platform} from 'react-native';
+import { Text, StyleSheet, Image, View, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, DeviceEventEmitter, RefreshControl, ActivityIndicator, Linking, Platform } from 'react-native';
 
 import Api from '../util/api';
 import Util from '../util/util';
@@ -22,7 +22,7 @@ class Header extends Component {
     render() {
         let uri = this.props.uri;
         return (
-            <View style={[styles.headerContainer,Platform.OS=='android'?{marginTop:0}:null]}>
+            <View style={[styles.headerContainer, Platform.OS == 'android' ? { marginTop: 0 } : null]}>
                 <TouchableOpacity
                     style={styles.backBtn}
                     onPress={this.goBack.bind(this)}
@@ -79,7 +79,7 @@ var DetailPage = React.createClass({
 
             // 关键字
             let keywords = Util.formatSymbol(acinfo.activity.keywords);
-            keywords = keywords.map((keyword,i) => {
+            keywords = keywords.map((keyword, i) => {
                 return (
                     <Text key={i} style={{ color: '#999', marginRight: 4 }}>{keyword}</Text>
                 )
@@ -101,11 +101,11 @@ var DetailPage = React.createClass({
                 return (
                     <View style={styles.planList} key={i}>
                         <View style={[Theme.flexDrow]}>
-                            <View style={[styles.planTd1, styles.planTd]}><Text style={styles.planTdText}>{plan.number}</Text></View>
+                            <View style={[styles.planTd1, styles.planTd]}><Text style={styles.planTdText}>{plan.number + ''}</Text></View>
                             <View style={[styles.planTd2, styles.planTd]}><Text style={styles.planTdText}>{plan.termdescription}</Text></View>
                             <View style={[styles.planTd3, styles.planTd]}><Text style={styles.planTdText}>{plan.projects}</Text></View>
-                            <View style={[styles.planTd4, styles.planTd]}><Text style={styles.planTdText}>{plan.invest}+</Text></View>
-                            <View style={[styles.planTd5, styles.planTd]}><Text style={[styles.planTdText, Theme.red]}>{plan.mfrebate}</Text></View>
+                            <View style={[styles.planTd4, styles.planTd]}><Text style={styles.planTdText}>{plan.invest + ''}+</Text></View>
+                            <View style={[styles.planTd5, styles.planTd]}><Text style={[styles.planTdText, Theme.red]}>{plan.mfrebate + ''}</Text></View>
                         </View>
                         <TouchableOpacity style={styles.planMore}
                             onPress={() => {
@@ -119,7 +119,7 @@ var DetailPage = React.createClass({
                                 that.setState({
                                     ref: !that.state.ref
                                 })
-          
+
                             }}>
                             <Text style={styles.planMoreText}>{that.state.isHidden[i].moreText}</Text>
                         </TouchableOpacity>
@@ -152,7 +152,7 @@ var DetailPage = React.createClass({
             postinfo += '支付宝帐号';
 
             // 评论
-            let comments = commentData.map((comment,i) => {
+            let comments = commentData.map((comment, i) => {
                 return <Comment index={i} comment={comment} commentField={comment_field} />
             })
 
@@ -170,16 +170,16 @@ var DetailPage = React.createClass({
                     <Header navigator={this.props.navigator} uri={uri} />
                     <View style={{ flex: 1 }}>
                         <ScrollView ref={'scroll'}
-                            onContentSizeChange={(contentWidth, contentHeight) => {                              
+                            onContentSizeChange={(contentWidth, contentHeight) => {
                                 this.setState({
-                                    contentHeight:parseInt(contentHeight)
+                                    contentHeight: parseInt(contentHeight)
                                 })
                             }}
                             onScrollEndDrag={(e) => {
                                 this.setState({
-                                    moveH:e.nativeEvent.contentOffset.y
+                                    moveH: e.nativeEvent.contentOffset.y
                                 })
-                         
+
                             }}>
                             <View onStartShouldSetResponderCapture={(e) => { dismissKeyboard(); }}>
                                 <View style={[styles.detailBox, { borderTopWidth: 0 }]}>
@@ -194,7 +194,7 @@ var DetailPage = React.createClass({
                                         <Tags tagsName={'风控得分:' + acinfo.plat.riskscore} styles={styles} />
                                     </View>
                                     <View style={[Theme.flexBtrow, { marginTop: 15 }]}>
-                                        <View><Text style={{ color: '#999' }}>已有{acinfo.commentnum}人参加</Text></View>
+                                        <View><Text style={{ color: '#999' }}>已有{acinfo.commentnum + ''}人参加</Text></View>
                                         <View style={Theme.flexDrow}>
                                             <Text style={{ color: '#999' }}>关键字：</Text>
                                             {keywords}
@@ -257,7 +257,7 @@ var DetailPage = React.createClass({
                                             KeyboardAvoidingViewData={{
                                                 contentHeight: this.state.contentHeight,  //ScrollView滚动容器高度
                                                 moveH: this.state.moveH,   //ScrollView滑动的距离
-                                                scrollViewDom:this.refs.scroll
+                                                scrollViewDom: this.refs.scroll
                                             }}
                                         />
                                     </View>

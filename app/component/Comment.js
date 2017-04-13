@@ -47,7 +47,7 @@ export default class Comment extends Component {
                     {useridView}
                     {phoneView}
                     {realnameView}
-                    <Text style={styles.commentListBdText}>方案：{comment.plannumber}(第{comment.periodnumber}期)</Text>
+                    <Text style={styles.commentListBdText}>方案：{comment.plannumber+''}(第{comment.periodnumber+''}期)</Text>
                     {investdateView}
                     <Text style={styles.commentListBdText}>支付宝账号：{comment.alipayid}</Text>
                 </View>

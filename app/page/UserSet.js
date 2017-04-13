@@ -212,10 +212,7 @@ export default class UserSet extends Component {
 
         let opt = {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
+          
             body: formData
         }
         console.log(formData)

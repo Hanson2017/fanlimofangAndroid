@@ -14,7 +14,7 @@ class List extends Component {
         let conStr = Util.delHtmlTag(data.con_str);
         return (
             <View style={styles.listView}>
-                <View style={styles.listTitle}><Text style={styles.listTitleText}>{listNo}.{data.title}</Text></View>
+                <View style={styles.listTitle}><Text style={styles.listTitleText}>{listNo+''}.{data.title}</Text></View>
                 <View style={styles.listCon}>
                     <Text style={styles.listConText}>{conStr}</Text>
                 </View>

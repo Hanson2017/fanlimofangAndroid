@@ -41,6 +41,8 @@ const styles = StyleSheet.create({
     },
     ViewInput:{
         flex:1,
+        height: 46,
+        justifyContent:'center',
         paddingLeft:10,
     }
 })

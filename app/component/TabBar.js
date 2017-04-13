@@ -8,6 +8,7 @@ import HomePage from '../page/HomePage'
 import FirstPage from '../page/FirstPage'
 import Help from '../page/Help'
 import MePage from '../page/MePage'
+import Login from '../page/LoginPage'
 
 export default class TabBar extends Component {
     static defaultProps = {
@@ -100,13 +101,17 @@ export default class TabBar extends Component {
                         })
                     }}
                 >
-                    <MePage navigator={this.props.navigator} />
+                    {signState ?
+                        <MePage navigator={this.props.navigator} />
+                        :
+                        <Login navigator={this.props.navigator} />
+                    }
                 </TabNavigator.Item>
             </TabNavigator>
         )
     }
     componentDidMount() {
-
+             
     }
 }
 

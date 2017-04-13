@@ -1,3 +1,4 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">4amIK1z2WyahBgLvqi6oeGbRR54j4y28-4rpM</string>
     <string name="app_name">返利魔方</string>
 </resources>
