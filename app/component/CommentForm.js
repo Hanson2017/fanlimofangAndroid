@@ -290,7 +290,7 @@ export default class CommentForm extends Component {
                 {
                     signState == null ?
                         <View style={styles.commentTop}>
-                            <Text style={styles.commentTopText}>无需注册也可参加活动，但注册后可更方便对信息进行编辑等操作，以及享受一键跟帖功能</Text>
+                           
                             <View style={{ flexDirection: 'row' }}>
                                 <TouchableOpacity activeOpacity={0.6} style={styles.qqBtn} onPress={ThirdLogin._qqlogin.bind(this, this)}>
                                     <Text style={styles.qqBtnText}>QQ登录</Text>
@@ -371,11 +371,12 @@ export default class CommentForm extends Component {
 
                 <View style={styles.submitBtnView}>
                     <TouchableOpacity
-                        style={styles.submitBtn}
+                        disabled={signState?false:true}
+                        style={[styles.submitBtn,signState?null:{backgroundColor: '#ccc'}]}
                         activeOpacity={0.7}
                         onPress={this.onSubmit.bind(this)}
                     >
-                        <Text style={styles.submitBtnText}>提交</Text>
+                        <Text style={styles.submitBtnText}>提交{signState?null:'(未登录)'}</Text>
                     </TouchableOpacity>
                 </View>
                 {/*提交 end*/}

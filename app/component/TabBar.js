@@ -8,7 +8,7 @@ import HomePage from '../page/HomePage'
 import FirstPage from '../page/FirstPage'
 import Help from '../page/Help'
 import MePage from '../page/MePage'
-import Login from '../page/LoginPage'
+import Login from '../page/loginPageT'
 
 export default class TabBar extends Component {
     static defaultProps = {

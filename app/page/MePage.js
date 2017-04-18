@@ -127,7 +127,7 @@ export default class MePage extends Component {
         this.setState({
             ref: !this.state.ref
         })
-        this.props.navigator.replacePrevious({
+        this.props.navigator.replace({
             component: MainPage
         })
     }

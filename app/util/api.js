@@ -1,6 +1,6 @@
 'use strict';
 
-const host = 'http://192.168.1.18:8083/DataApi/';
+const host = 'http://www.fanlimofang.com/DataApi/';
 
 module.exports = {
     domain: 'http://www.fanlimofang.com',

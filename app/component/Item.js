@@ -32,8 +32,9 @@ export default class Item extends Component {
                 isRisk =
                     (
                         <View style={[Theme.flexDrow, { marginTop: 10 }]}>
+                             <Tags tagsName={'风控分:' + data.plat.riskscore} styles={styles} />
                             <Tags tagsName={risklevel} styles={styles} />
-                            <Tags tagsName={'风控得分:' + data.plat.riskscore} styles={styles} />
+                           
                         </View>
                     )
                 break;
@@ -56,7 +57,7 @@ export default class Item extends Component {
         let keywords = Util.formatSymbol(data.activity.keywords);
         keywords = keywords.map((keyword, i) => {
             return (
-                <View style={{ marginTop: 5 }} key={i}><Text style={{ color: '#999' }}>{keyword}</Text></View>
+                <View style={{ marginTop: 5 }} key={i}><Text style={{ color: '#bdbaba',fontSize:11 }}>{keyword}</Text></View>
             )
         })
 
@@ -134,6 +135,7 @@ const styles = StyleSheet.create({
     type: {
         borderWidth: 1,
         borderColor: '#ccc',
+         borderRadius: 3,
         height: 20,
         width: 30,
         alignItems: 'center',
@@ -144,13 +146,14 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     tags: {
-        marginRight: 8,
+        marginRight: 5,
         paddingLeft: 4,
         paddingRight: 4,
         borderWidth: 1,
+        borderRadius: 4,
         borderColor: Theme.color,
         height: 25,
-        minWidth: 55,
+        minWidth: 68,
         alignItems: 'center',
         justifyContent: 'center',
     },
