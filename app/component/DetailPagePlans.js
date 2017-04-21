@@ -11,34 +11,35 @@ export default class Plans extends Component {
         let code = this.props.code;
         let siteUrl = this.props.siteUrl;
         let periods = this.props.periods;
-        let special=this.props.special;
+        let special = this.props.special;
         let process;
         let investprocess = Util.delHtmlTag(plans.investprocess);
-        let protectlv=0;
+        let atype = this.props.atype
+        let protectlv = 0;
 
-        if (plans.invest>0) {
+        if (plans.invest > 0) {
             protectlv = (plans.protectamount / plans.invest * 100).toFixed(2)
         }
         if (code == ! '') {
             process = (
                 <View style={styles.row}>
-                    <Text style={{fontSize:11}}>1、通过</Text>
+                    <Text style={{ fontSize: 11 }}>1、通过</Text>
                     <TouchableOpacity onPress={Util.Linked.bind(this, siteUrl)}>
-                        <Text style={{fontSize:11}}>直达链接</Text>
+                        <Text style={{ fontSize: 11 }}>直达链接</Text>
 
                     </TouchableOpacity>
-                    <Text style={{fontSize:11}}>进入网站并注册，邀请码填写 {this.props.code+''}</Text>
+                    <Text style={{ fontSize: 11 }}>进入网站并注册，邀请码填写 {this.props.code + ''}</Text>
                 </View>
             )
         }
         else {
             process = (
                 <View style={styles.row}>
-                    <Text style={{color:'#666',fontSize:11}}>1、通过</Text>
+                    <Text style={{ color: '#666', fontSize: 11 }}>1、通过</Text>
                     <TouchableOpacity onPress={Util.Linked.bind(this, siteUrl)}>
-                        <Text style={{color:'red',fontSize:11}}>直达链接</Text>
+                        <Text style={{ color: 'red', fontSize: 11 }}>直达链接</Text>
                     </TouchableOpacity>
-                    <Text style={{color:'#666',fontSize:11}}>进入网站并注册</Text>
+                    <Text style={{ color: '#666', fontSize: 11 }}>进入网站并注册</Text>
                 </View>
             )
         }
@@ -47,55 +48,61 @@ export default class Plans extends Component {
             <View style={styles.content}>
 
                 <View style={styles.hd}>
-                    <Text style={styles.hdText}>第{periods +''}期</Text>
-                    <Text style={[styles.hdText,{marginLeft:20}]}>方案{plans.number+''}</Text>
+                    <Text style={styles.hdText}>第{periods + ''}期</Text>
+                    <Text style={[styles.hdText, { marginLeft: 20 }]}>方案{plans.number + ''}</Text>
                 </View>
                 <View style={styles.row}>
-                    <Text style={{fontSize:11,color:'#666'}}>方案{plans.number+''}换算成年化收益是<Text style={{color:'red',paddingLeft:5}}>{plans.rate+''}%</Text></Text>
+                    <Text style={{ fontSize: 11, color: '#666' }}>方案{plans.number + ''}换算成年化收益是
+                        <Text style={{ color: 'red', paddingLeft: 5 }}>
+                            {atype != 1 ? '浮动' :
+                                plans.rate + '%'
+                            }
+                        </Text>
+                    </Text>
                 </View>
-               
+
                 <View style={styles.row}>
                     <Text style={styles.rowLabel}>赔付率:</Text>
-                    <Text style={styles.rowCon}>{protectlv+''}%（{plans.protectamount+''}元）</Text>
+                    <Text style={styles.rowCon}>{protectlv + ''}%（{plans.protectamount + ''}元）</Text>
                 </View>
                 <View style={styles.row}>
                     <Text style={styles.rowLabel}>保障时间:</Text>
-                    <Text style={styles.rowCon}>{plans.protectday+''}天（从投资当日起算）</Text>
+                    <Text style={styles.rowCon}>{plans.protectday + ''}天（从投资当日起算）</Text>
                 </View>
                 <View style={styles.row}>
-                    <Text style={{color:'#666',fontSize:11}}>投资流程：</Text>
+                    <Text style={{ color: '#666', fontSize: 11 }}>投资流程：</Text>
                 </View>
                 {process}
                 <View>
-                    <Text style={{color:'#666',fontSize:11,lineHeight:24}}>{investprocess}</Text>
+                    <Text style={{ color: '#666', fontSize: 11, lineHeight: 24 }}>{investprocess}</Text>
                 </View>
-                {special?
-                <View style={styles.special}>
-                    <Text style={{color:'#666',fontSize:11,lineHeight:24}}>特别说明</Text>
-                    <Text style={{color:'red',fontSize:11,lineHeight:24}}>{special}</Text>
-                </View>
-                :null
+                {special ?
+                    <View style={styles.special}>
+                        <Text style={{ color: '#666', fontSize: 11, lineHeight: 24 }}>特别说明</Text>
+                        <Text style={{ color: 'red', fontSize: 11, lineHeight: 24 }}>{special}</Text>
+                    </View>
+                    : null
                 }
-                
+
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    content:{
-        paddingLeft:20,
-        paddingRight:20,
-        paddingBottom:20,
+    content: {
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingBottom: 20,
     },
     hd: {
         height: 34,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        borderBottomColor:'#f2f2f2',
-        borderBottomWidth:1,
-        marginBottom:10,
+        borderBottomColor: '#f2f2f2',
+        borderBottomWidth: 1,
+        marginBottom: 10,
     },
     hdText: {
         color: '#666',
@@ -108,16 +115,16 @@ const styles = StyleSheet.create({
     },
     rowLabel: {
         width: 60,
-        color:'#666',
-        fontSize:11,
+        color: '#666',
+        fontSize: 11,
     },
-    rowCon:{
-        color:'#666',
-        fontSize:11,
+    rowCon: {
+        color: '#666',
+        fontSize: 11,
     },
-    special:{
-        marginTop:15,
-        borderTopColor:'#f2f2f2',
-        borderTopWidth:1
+    special: {
+        marginTop: 15,
+        borderTopColor: '#f2f2f2',
+        borderTopWidth: 1
     }
 })

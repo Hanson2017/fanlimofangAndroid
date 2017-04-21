@@ -29,14 +29,32 @@ export default class Item extends Component {
             case 1:
                 joinText = '我要参加'
                 btnJoinOver = null
-                isRisk =
-                    (
-                        <View style={[Theme.flexDrow, { marginTop: 10 }]}>
-                             <Tags tagsName={'风控分:' + data.plat.riskscore} styles={styles} />
-                            <Tags tagsName={risklevel} styles={styles} />
-                           
-                        </View>
-                    )
+                if (data.activity.atype == 1) {
+                    isRisk =
+                        (
+                            <View style={[Theme.flexDrow, { marginTop: 10 }]}>
+                                <Tags tagsName={'风控分:' + data.plat.riskscore} styles={styles} />
+                                <Tags tagsName={risklevel} styles={styles} />
+
+                            </View>
+                        )
+                }
+                else if (data.activity.atype == 2) {
+                    isRisk =
+                        (
+                            <View style={[Theme.flexDrow, { marginTop: 10 }]}>
+                                <Tags tagsName={'黄金类产品'} styles={styles} />
+                            </View>
+                        )
+                }
+                else if (data.activity.atype == 3) {
+                    isRisk =
+                        (
+                            <View style={[Theme.flexDrow, { marginTop: 10 }]}>
+                                <Tags tagsName={'基金类产品'} styles={styles} />
+                            </View>
+                        )
+                }
                 break;
 
             case 2:
@@ -57,7 +75,7 @@ export default class Item extends Component {
         let keywords = Util.formatSymbol(data.activity.keywords);
         keywords = keywords.map((keyword, i) => {
             return (
-                <View style={{ marginTop: 5 }} key={i}><Text style={{ color: '#bdbaba',fontSize:11 }}>{keyword}</Text></View>
+                <View style={{ marginTop: 5 }} key={i}><Text style={{ color: '#bdbaba', fontSize: 11 }}>{keyword}</Text></View>
             )
         })
 
@@ -94,7 +112,13 @@ export default class Item extends Component {
                         </View>
                         <View style={{ width: 110 }}>
                             <View><Text style={Theme.c666}>相当于年化</Text></View>
-                            <View style={Theme.mt5}><Text style={[Theme.red, styles.font17]}>{data.activity.rate + ''}%</Text></View>
+                            <View style={Theme.mt5}>
+                                <Text style={[Theme.red, styles.font17]}>
+                                    {data.activity.atype != 1 ? '浮动' :
+                                        data.activity.rate + '%'
+                                    }
+                                </Text>
+                            </View>
                         </View>
                         <View>
                             <View><Text style={Theme.c666}>已参加</Text></View>
@@ -135,7 +159,7 @@ const styles = StyleSheet.create({
     type: {
         borderWidth: 1,
         borderColor: '#ccc',
-         borderRadius: 3,
+        borderRadius: 3,
         height: 20,
         width: 30,
         alignItems: 'center',

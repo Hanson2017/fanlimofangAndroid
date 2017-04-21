@@ -98,6 +98,7 @@ android {
         }
        manifestPlaceholders = [
             QQ_APPID: "101346676",
+            // WX_APPID:"wx1a5e49697c7aa875"            
             WX_APPID:"wx2a5779a8fdf8ff4b"
         ]
     }

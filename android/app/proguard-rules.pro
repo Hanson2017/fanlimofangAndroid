@@ -1,3 +1,4 @@
+
 # Add project specific ProGuard rules here.
 # By default, the flags in this file are appended to flags specified
 # in /usr/local/Cellar/android-sdk/24.3.3/tools/proguard/proguard-android.txt
@@ -48,7 +49,16 @@
 -keepclassmembers class *  { @com.facebook.react.uimanager.annotations.ReactProp <methods>; }
 -keepclassmembers class *  { @com.facebook.react.uimanager.annotations.ReactPropGroup <methods>; }
 
+-keep class com.facebook.** { *; }
 -dontwarn com.facebook.react.**
+
+-keep class android.text {* ;}
+-dontwarn android.text.*
+
+-dontwarn com.facebook.react.**
+
+def enableProguardInReleaseBuilds = true
+
 
 # okhttp
 

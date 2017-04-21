@@ -172,7 +172,7 @@ export default class HelpList extends Component {
             })
         }
 
-        let url = Api.getInfoList + '?type=bangzhu&page=' + this.page + '&pagesize=10';
+        let url = Api.getInfoList + '?type=bangzhu&page=' + this.page + '&pagesize=30';
 
         fetch(url)
             .then((response) => {

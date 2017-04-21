@@ -2,7 +2,7 @@
 import Api from '../util/api';
 import StorageLoginInfo from '../config/storageLogin'
 import * as QQAPI from 'react-native-qq';
-// import * as WechatAPI from 'react-native-wx';
+import * as WechatAPI from 'react-native-wx';
 
 module.exports = {
     _qqlogin(that) {
@@ -40,8 +40,8 @@ module.exports = {
         WechatAPI.login()
             .then((result) => {
                 let appid = result.appid;
+                // let secret = '3a5ec9b9d9ac60c38cb554e314c8a9d3' 
                 let secret = '5b835e079361c2cc8fe39a82e23412d7'
-                //  let secret = '6dde3176efd8e0353ba9f8b256dcd9da'
                 let code = result.code;
                 let url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + appid + '&secret=' + secret + '&code=' + code + '&grant_type=authorization_code'
                 fetch(url)
