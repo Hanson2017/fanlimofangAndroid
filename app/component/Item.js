@@ -55,6 +55,14 @@ export default class Item extends Component {
                             </View>
                         )
                 }
+                else {
+                    isRisk =
+                        (
+                            <View style={[Theme.flexDrow, { marginTop: 10 }]}>
+                                <Tags tagsName={'其他类产品'} styles={styles} />
+                            </View>
+                        )
+                }
                 break;
 
             case 2:
@@ -84,7 +92,7 @@ export default class Item extends Component {
                 <View style={{ flex: 1 }}>
                     <View style={Theme.flexDrow}>
                         <View>
-                            <View style={[Theme.flexDrow, { marginRight: 10 }]}>
+                            <View style={[Theme.flexDrow, { marginRight: 6 }]}>
                                 <Image source={{ uri: uri }} style={{ width: 80, height: 24 }} />
                                 <View style={[styles.type, { marginTop: -8, marginLeft: 3 }]}>
                                     <Text style={styles.typeText}>{investType}</Text>
@@ -170,7 +178,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     tags: {
-        marginRight: 5,
+        marginRight: 6,
         paddingLeft: 4,
         paddingRight: 4,
         borderWidth: 1,

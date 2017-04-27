@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, ScrollView, TouchableOpacity, TextInput, Alert, DeviceEventEmitter, Modal ,Platform,DatePickerAndroid} from 'react-native';
+import { Text, StyleSheet, View, ScrollView, TouchableOpacity, TextInput, Alert, DeviceEventEmitter, Modal, Platform, DatePickerAndroid } from 'react-native';
 import Theme from '../util/theme';
 import Api from '../util/api';
 import Util from '../util/util';
@@ -8,8 +8,9 @@ import Loading from '../component/Loading';
 import TxtInput from '../component/TextInputListW'
 import SubmitBtn from '../component/SubmitBtn'
 import FormValidation from '../util/FormValidation'
-import Select from '../component/Select'
-import Calendar from '../component/Calendar'
+
+import NewSelect from '../component/NewSelect';
+import NewCalendar from '../component/NewCalendar';
 
 export default class ActiveRecordEdit extends Component {
     constructor(props) {
@@ -23,77 +24,100 @@ export default class ActiveRecordEdit extends Component {
             plan: 1,
             investdate: '',
             alipay: '',
+             loading: true,
         }
     }
     render() {
-
-        let comment_field = this.props.comment_field;
-
-        if (comment_field.indexOf('c_userid') >= 0) {
-            var useridView =
-                <TxtInput
-                    label={'注册ID'}
-                    params={{ value: this.state.userid, onChangeText: this.onChangeTextUserid.bind(this) }}
-                />
-        }
-        if (comment_field.indexOf('c_phone') >= 0) {
-            var phoneView =
-                <TxtInput
-                    label={'注册手机号'}
-                    params={{ value: this.state.phone, maxLength: 11, keyboardType: 'numeric', onChangeText: this.onChangeTextPhone.bind(this) }}
-                />
-        }
-        if (comment_field.indexOf('c_username') >= 0) {
-            var realnameView =
-                <TxtInput
-                    label={'真实姓名'}
-                    params={{ value: this.state.realname, onChangeText: this.onChangeTextRealname.bind(this) }}
-                />
-        }
-
-        if (comment_field.indexOf('investdate') >= 0) {
-            var investdateView =
-
-                <TxtInput
-                    label={'投资日期'}
-                    value={this.state.investdate}
-                    ViewInput={true}
-                    onPress={Platform.OS === 'ios' ? this._selectData.bind(this) : this.showPicker.bind(this)}
-                />
-        }
-        let planstr = this.state.plan.toString()
-        return (
-            <View style={styles.container}>
-                <Header navigator={this.props.navigator} headerText={'活动记录修改'} />
-
-                <View style={styles.content}>
-                    <View style={styles.FormContainer}>
-
-                        {useridView}
-                        {phoneView}
-                        {realnameView}
-                        <TxtInput
-                            label={'所选方案'}
-                            value={planstr}
-                            ViewInput={true}
-                            onPress={this._selectPlan.bind(this, this.state.plan)}
-                        />
-
-                        {investdateView}
-                        <TxtInput
-                            label={'支付宝账号'}
-                            borderBt={'null'}
-                            params={{ value: this.state.alipay, onChangeText: this.onChangeTextAlipay.bind(this) }}
-                        />
-                    </View>
-                    <View style={[Theme.mt20]}>
-                        <SubmitBtn value={'保存'} onPress={this.onSubmit.bind(this)} />
-                    </View>
-
+        if (this.state.loading) {
+            return (
+                <View style={styles.container}>
+                    <Header navigator={this.props.navigator} headerText={'活动记录修改'} />
+                    <Loading />
                 </View>
-            </View>
-        )
+            )
+
+        }
+        else {
+
+            let comment_field = this.props.comment_field;
+
+            // 方案
+            let selectList = [];
+            let plans=this.state.planList;
+            for (let i = 0; i < plans.length; i++) {
+                selectList.push({ number: plans[i].number, value: '方案' + plans[i].number })
+            }
+
+            if (comment_field.indexOf('c_userid') >= 0) {
+                var useridView =
+                    <TxtInput
+                        label={'注册ID'}
+                        params={{ value: this.state.userid, onChangeText: this.onChangeTextUserid.bind(this) }}
+                    />
+            }
+            if (comment_field.indexOf('c_phone') >= 0) {
+                var phoneView =
+                    <TxtInput
+                        label={'注册手机号'}
+                        params={{ value: this.state.phone, maxLength: 11, keyboardType: 'numeric', onChangeText: this.onChangeTextPhone.bind(this) }}
+                    />
+            }
+            if (comment_field.indexOf('c_username') >= 0) {
+                var realnameView =
+                    <TxtInput
+                        label={'真实姓名'}
+                        params={{ value: this.state.realname, onChangeText: this.onChangeTextRealname.bind(this) }}
+                    />
+            }
+
+            if (comment_field.indexOf('investdate') >= 0) {
+                var investdateView =
+
+                    <TxtInput
+                        label={'投资日期'}
+                        value={this.state.investdate}
+                        ViewInput={true}
+                        onPress={Platform.OS === 'ios' ? this._selectData.bind(this) : this.showPicker.bind(this)}
+                    />
+            }
+            let planstr = this.state.plan.toString()
+
+            return (
+                <View style={styles.container}>
+                    <Header navigator={this.props.navigator} headerText={'活动记录修改'} />
+                    <NewSelect ref="select" options={selectList} />
+                    <NewCalendar ref="Calendar" />
+                    <View style={styles.content}>
+                        <View style={styles.FormContainer}>
+
+                            {useridView}
+                            {phoneView}
+                            {realnameView}
+                            <TxtInput
+                                label={'所选方案'}
+                                value={planstr}
+                                ViewInput={true}
+                                onPress={this._selectPlan.bind(this)}
+                            />
+
+                            {investdateView}
+                            <TxtInput
+                                label={'支付宝账号'}
+                                borderBt={'null'}
+                                params={{ value: this.state.alipay, onChangeText: this.onChangeTextAlipay.bind(this) }}
+                            />
+                        </View>
+                        <View style={[Theme.mt20]}>
+                            <SubmitBtn value={'保存'} onPress={this.onSubmit.bind(this)} />
+                        </View>
+
+                    </View>
+                </View>
+            )
+        }
+
     }
+
     onChangeTextUserid(text) {
         this.setState({
             userid: text
@@ -125,30 +149,11 @@ export default class ActiveRecordEdit extends Component {
             alipay: text
         })
     }
-    _selectPlan(planNo) {
-        let planList = this.state.planList;
-        let selectList = []
-        for (let i = 0; i < planList.length; i++) {
-            selectList.push({ number: planList[i].number, value: '方案' + planList[i].number })
-        }
-        this.props.navigator.push({
-            component: Select,
-            params: {
-                selectList: selectList,
-                selectNo: planNo - 1,
-                headerText: '选择方案'
-            }
-        })
+    _selectPlan() {
+        this.refs.select.show(this.state.plan)
     }
     _selectData() {
-        this.props.navigator.push({
-            component: Calendar,
-            params: {
-                headerText: '选择日期',
-                investdate: this.state.investdate
-
-            }
-        })
+        this.refs.Calendar.show()
     }
     async showPicker() {
         let that = this;
@@ -162,7 +167,7 @@ export default class ActiveRecordEdit extends Component {
                 that.setState({
                     investdate: Util.setDate(date)
                 })
-              
+
             }
         }
         catch ({ code, message }) {
@@ -289,6 +294,11 @@ export default class ActiveRecordEdit extends Component {
                         .then((responseData) => {
                             let comments = responseData.data.comment;
                             let planList = responseData.data.planlist;
+                            let selectList = [];
+
+                            for (let i = 0; i < planList.length; i++) {
+                                selectList.push({ number: planList[i].number, value: '方案' + planList[i].number })
+                            }
                             that.setState({
                                 dataSource: comments,
                                 planList: planList,
@@ -298,6 +308,7 @@ export default class ActiveRecordEdit extends Component {
                                 plan: comments.data_activityplannumber,
                                 investdate: comments.data_investdate,
                                 alipay: comments.alipayid,
+                                loading: false
                             })
                         })
                 }

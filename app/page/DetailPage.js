@@ -16,6 +16,9 @@ import CommentForm from '../component/CommentForm'
 import BottomBtn from '../component/BottomBtn'
 import CommentsPage from '../page/Comments'
 
+import NewSelect from '../component/NewSelect';
+import NewCalendar from '../component/NewCalendar';
+
 var dismissKeyboard = require('dismissKeyboard');
 
 class Header extends Component {
@@ -51,7 +54,7 @@ var DetailPage = React.createClass({
             isHidden: [],
             ref: false,
             contentHeight: 0,  //ScrollView滚动容器高度
-            moveH: 0   //ScrollView滑动的距离
+            moveH: 0   //ScrollView滑动的距离,
         }
     },
     render: function () {
@@ -103,6 +106,14 @@ var DetailPage = React.createClass({
                             (
                                 <View style={[Theme.flexDrow, { marginTop: 10 }]}>
                                     <Tags tagsName={'基金类产品'} styles={styles} />
+                                </View>
+                            )
+                    }
+                    else {
+                        isRisk =
+                            (
+                                <View style={[Theme.flexDrow, { marginTop: 10 }]}>
+                                    <Tags tagsName={'其他类产品'} styles={styles} />
                                 </View>
                             )
                     }
@@ -208,9 +219,19 @@ var DetailPage = React.createClass({
                 )
             }
 
+            // 方案
+            let selectList = []
+            for (let i = 0; i < plans.length; i++) {
+                selectList.push({ number: plans[i].number, value: '方案' + plans[i].number })
+            }
+
+
             return (
                 <View style={styles.container}>
                     <Header navigator={this.props.navigator} uri={uri} />
+
+                    <NewSelect ref="select" options={selectList} />
+                    <NewCalendar  ref="Calendar" />
                     <View style={{ flex: 1 }}>
                         <ScrollView ref={'scroll'}
                             onContentSizeChange={(contentWidth, contentHeight) => {
@@ -299,6 +320,7 @@ var DetailPage = React.createClass({
                                 {acinfo.activity.status == 2 ? null :
                                     < View style={[styles.detailBox, Theme.mt10]}>
                                         <CommentForm
+                                            ref='CommentForm'
                                             dataSource={{ comment_field: comment_field, activityid: acinfo.activity.id, periodnumber: acinfo.activity.number, img_invest: acinfo.activity.img_invest }}
                                             plans={plans}
                                             navigator={this.props.navigator}
@@ -308,6 +330,8 @@ var DetailPage = React.createClass({
                                                 moveH: this.state.moveH,   //ScrollView滑动的距离
                                                 scrollViewDom: this.refs.scroll
                                             }}
+                                            isShowSelect={this.isShowSelect.bind(this)}
+                                            isShowCalendar={this.isShowCalendar.bind(this)}
                                         />
                                     </View>
                                 }
@@ -324,12 +348,17 @@ var DetailPage = React.createClass({
             )
         }
     },
+    isShowSelect:function(selectNo,i){
+        this.refs.select.show(selectNo,i)
+    },
+    isShowCalendar:function(){
+         this.refs.Calendar.show()
+    },
     componentDidMount: function () {
         let that = this;
         this.getData();
         this.getCommentData();
     },
-
     getData: function () {
         let that = this;
         let url = Api.detail + '?activityid=' + this.props.id;
@@ -459,14 +488,14 @@ const styles = StyleSheet.create({
         borderBottomColor: '#e4e4e4',
     },
     tags: {
-        marginRight: 15,
+        marginRight: 10,
         paddingLeft: 4,
         paddingRight: 4,
         borderWidth: 1,
         borderColor: Theme.color,
         borderRadius: 4,
         height: 25,
-        minWidth: 68,
+        minWidth: 72,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -541,19 +570,19 @@ const styles = StyleSheet.create({
         color: '#34a0e7',
         fontSize: 15,
     },
-    qqOnline:{
-        marginTop:6,
-        width:100,
-        height:30,
+    qqOnline: {
+        marginTop: 6,
+        width: 100,
+        height: 30,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor:'#D8D8D8',
-        borderRadius:5,
+        backgroundColor: '#D8D8D8',
+        borderRadius: 5,
     },
-    qqOnlineText:{
-        color:'#888',
-        fontSize:13,
+    qqOnlineText: {
+        color: '#888',
+        fontSize: 13,
     },
 })
 

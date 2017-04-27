@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, Image, View, TextInput, TouchableOpacity, DeviceEventEmitter, Modal, Alert, Keyboard, Dimensions, Platform, DatePickerAndroid } from 'react-native';
+import { Text, StyleSheet, Image, View, TextInput, TouchableOpacity, DeviceEventEmitter, Modal, Alert, Keyboard, Dimensions, Platform, DatePickerAndroid, Picker } from 'react-native';
 
 import Api from '../util/api';
 import Util from '../util/util';
 import CameraAction from '../component/CameraAction';
-import Select from '../component/Select';
-import Calendar from '../component/Calendar';
 import Theme from '../util/theme';
 import ModalImg from '../component/ModalImg';
 import FormValidation from '../util/FormValidation';
@@ -25,7 +23,7 @@ export default class CommentForm extends Component {
                     phone: '',
                     realname: '',
                     plan: '请选择',
-                    investdate: '',
+                    investdate: Util.setDate(new Date()),
                     fileUri: Api.domain + '/images/uploadimg.jpg',
                     fileName: ''
                 }
@@ -38,6 +36,7 @@ export default class CommentForm extends Component {
             ref: false,
             comformType: 'Single',
         }
+
         let KeyboardAvoidingViewData = this.props.KeyboardAvoidingViewData;
         this.contentHeight = KeyboardAvoidingViewData.contentHeight;
 
@@ -125,7 +124,7 @@ export default class CommentForm extends Component {
                 investdateView = this.CommentFormList('投资日期', {},
                     {
                         value: that.state.listData[i].investdate,
-                        onPress: this._selectData.bind(this, i)
+                        onPress: this.props.isShowCalendar.bind(this)
                     }
 
                 )
@@ -194,12 +193,14 @@ export default class CommentForm extends Component {
     }
     planFunction(i) {
         let that = this;
+
+        let selectNo = this.state.listData[i].plan == '请选择' ? 1 : this.state.listData[i].plan
+
         let planView = this.CommentFormList('所选方案', {},
             {
                 value: that.state.listData[i].plan,
-                onPress: this._selectPlan.bind(this, i)
+                onPress: this.props.isShowSelect.bind(this,selectNo)
             }
-
         )
         return planView;
     }
@@ -285,12 +286,13 @@ export default class CommentForm extends Component {
 
         return (
             <View>
+
                 <ModalImg that={this} visible={this.state.visible} uri={this.state.preview} />
 
                 {
                     signState == null ?
                         <View style={styles.commentTop}>
-                           
+
                             <View style={{ flexDirection: 'row' }}>
                                 <TouchableOpacity activeOpacity={0.6} style={styles.qqBtn} onPress={ThirdLogin._qqlogin.bind(this, this)}>
                                     <Text style={styles.qqBtnText}>QQ登录</Text>
@@ -316,7 +318,7 @@ export default class CommentForm extends Component {
                                         phone: '',
                                         realname: '',
                                         plan: '请选择',
-                                        investdate: '',
+                                        investdate: Util.setDate(new Date()),
                                         fileUri: Api.domain + '/images/uploadimg.jpg',
                                         fileName: ''
                                     }
@@ -358,32 +360,34 @@ export default class CommentForm extends Component {
                         {
                             defaultValue: this.state.alipay,
                             onChangeText: (text) => {
-                                this.setState({
-                                    alipay: text
-                                })
+                                this.state.alipay = text
+
                             },
                             ref: 'alipay'
                         }
                     )
 
                 }
+
+
                 {/*支付宝账号 end*/}
 
                 <View style={styles.submitBtnView}>
                     <TouchableOpacity
-                        disabled={signState?false:true}
-                        style={[styles.submitBtn,signState?null:{backgroundColor: '#ccc'}]}
+                        disabled={signState ? false : true}
+                        style={[styles.submitBtn, signState ? null : { backgroundColor: '#ccc' }]}
                         activeOpacity={0.7}
                         onPress={this.onSubmit.bind(this)}
                     >
-                        <Text style={styles.submitBtnText}>提交{signState?null:'(未登录)'}</Text>
+                        <Text style={styles.submitBtnText}>提交{signState ? null : '(未登录)'}</Text>
                     </TouchableOpacity>
                 </View>
                 {/*提交 end*/}
+            
             </View>
         )
     }
-    
+
 
     addInputForm() {
         var that = this;
@@ -393,7 +397,7 @@ export default class CommentForm extends Component {
                 phone: '',
                 realname: '',
                 plan: '请选择',
-                investdate: '',
+                investdate: Util.setDate(new Date()),
                 fileUri: Api.domain + '/images/uploadimg.jpg',
                 fileName: ''
             }
@@ -408,33 +412,7 @@ export default class CommentForm extends Component {
         })
         this.state.listData.splice(index, 1)
     }
-    _selectPlan(index) {
-        let planList = this.props.plans;
-        let selectList = []
-        for (let i = 0; i < planList.length; i++) {
-            selectList.push({ number: planList[i].number, value: '方案' + planList[i].number })
-        }
-        let selectNo = this.state.listData[index].plan == '请选择' ? -1 : this.state.listData[index].plan - 1
-        this.props.navigator.push({
-            component: Select,
-            params: {
-                selectList: selectList,
-                selectNo: selectNo,
-                headerText: '选择方案',
-                index: index
-            }
-        })
-    }
-    _selectData(index) {
-        this.props.navigator.push({
-            component: Calendar,
-            params: {
-                headerText: '选择日期',
-                investdate: this.state.listData[index].investdate,
-                index: index
-            }
-        })
-    }
+    
     async showPicker(i) {
         let that = this;
         try {
@@ -492,14 +470,17 @@ export default class CommentForm extends Component {
 
         this.subscriptions = [
             DeviceEventEmitter.addListener('select', (data) => {
-                let index = data.index;
-                let value = data.value;
-                that.state.listData[index].plan = value;
+                that.state.listData[0].plan = data;
+                that.setState({
+                    ref:!that.state.ref
+                })
             }),
             DeviceEventEmitter.addListener('selectDate', (data) => {
-                let index = data.index;
-                let date = data.date;
-                that.state.listData[index].investdate = date;
+                
+                that.state.listData[0].investdate = data;
+                that.setState({
+                    ref:!that.state.ref
+                })
             })
         ]
 
@@ -593,7 +574,7 @@ export default class CommentForm extends Component {
             }
             // realname 判断
             if (comment_field.indexOf('c_username') >= 0) {
-                if (FormValidation.empty(listData[j].realname,'真实姓名不能为空') == false) {
+                if (FormValidation.empty(listData[j].realname, '真实姓名不能为空') == false) {
                     return;
                 }
             }
@@ -673,7 +654,7 @@ export default class CommentForm extends Component {
                                                             phone: '',
                                                             realname: '',
                                                             plan: '请选择',
-                                                            investdate: '',
+                                                            investdate: Util.setDate(new Date()),
                                                             fileUri: Api.domain + '/images/uploadimg.jpg',
                                                             fileName: ''
                                                         }
@@ -779,7 +760,7 @@ const styles = StyleSheet.create({
     ViewInput: {
         padding: 8,
         height: 32,
-        width: 160,
+        width: 240,
         borderWidth: 1,
         borderColor: '#ccc',
         justifyContent: 'center',
@@ -787,7 +768,7 @@ const styles = StyleSheet.create({
     textInput: {
         padding: 8,
         height: 32,
-        width: 160,
+        width: 240,
         borderWidth: 1,
         borderColor: '#ccc',
         color: '#666'

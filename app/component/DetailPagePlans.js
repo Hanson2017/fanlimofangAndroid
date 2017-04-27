@@ -13,7 +13,18 @@ export default class Plans extends Component {
         let periods = this.props.periods;
         let special = this.props.special;
         let process;
-        let investprocess = Util.delHtmlTag(plans.investprocess);
+
+        
+
+        let investprocessArr=plans.investprocess.split('<br />')
+        
+        let investprocesss=investprocessArr.map((text,i)=>{
+            let newText=Util.delHtmlTag(text)
+            return (
+                <Text style={{ color: '#666', fontSize: 11, lineHeight: 24 }}>{newText}</Text>    
+            )
+        })
+        
         let atype = this.props.atype
         let protectlv = 0;
 
@@ -74,7 +85,7 @@ export default class Plans extends Component {
                 </View>
                 {process}
                 <View>
-                    <Text style={{ color: '#666', fontSize: 11, lineHeight: 24 }}>{investprocess}</Text>
+                    {investprocesss}
                 </View>
                 {special ?
                     <View style={styles.special}>
