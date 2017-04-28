@@ -132,6 +132,7 @@ var DetailPage = React.createClass({
                 )
             })
 
+           
 
             //推荐理由 
             let reasons = Util.delHtmlTag(acinfo.activity.reasons);
@@ -145,6 +146,14 @@ var DetailPage = React.createClass({
                 let planDetaile = that.state.isHidden[i].hidden ? null : (
                     <Plans plans={dataSource.plans[i]} siteUrl={siteUrl} code={code} periods={periods} atype={acinfo.activity.atype} special={acinfo.activity.special} />
                 )
+                 // 总收益
+                let rebateStr=null;
+                if(acinfo.activity.atype == 1 || acinfo.activity.atype == 4){
+                    rebateStr=plan.rebate + ''
+                }
+                else{
+                    rebateStr='浮动';
+                }
                 return (
                     <View style={styles.planList} key={i}>
                         <View style={[Theme.flexDrow]}>
@@ -155,9 +164,7 @@ var DetailPage = React.createClass({
                             <View style={[styles.planTd5, styles.planTd]}><Text style={[styles.planTdText, Theme.red]}>{plan.mfrebate + ''}</Text></View>
                             <View style={[styles.planTd]}>
                                 <Text style={[styles.planTdText]}>
-                                    {acinfo.activity.atype != 1 ? '浮动' :
-                                        plan.rebate + ''
-                                    }
+                                    {rebateStr}
                                 </Text>
                             </View>
                         </View>

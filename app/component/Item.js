@@ -47,7 +47,7 @@ export default class Item extends Component {
                             </View>
                         )
                 }
-                else if (data.activity.atype == 3) {
+                else if (data.activity.atype == 3 || data.activity.atype == 4) {
                     isRisk =
                         (
                             <View style={[Theme.flexDrow, { marginTop: 10 }]}>
@@ -78,6 +78,15 @@ export default class Item extends Component {
 
         let repayText = data.repayday == '当日返现' ? data.repayday : data.repayday.replace('个','') + '返'
         let repaydays = Common.isTag(data.repayday, repayText, styles);
+
+        let rateStr=null;
+        if(data.activity.atype == 1 || data.activity.atype == 4){
+            rateStr=data.activity.rate + '%'
+        }
+        else{
+            rateStr='浮动';
+        }
+         
 
         //关键字
         let keywords = Util.formatSymbol(data.activity.keywords);
@@ -122,9 +131,7 @@ export default class Item extends Component {
                             <View><Text style={Theme.c666}>相当于年化</Text></View>
                             <View style={Theme.mt5}>
                                 <Text style={[Theme.red, styles.font17]}>
-                                    {data.activity.atype != 1 ? '浮动' :
-                                        data.activity.rate + '%'
-                                    }
+                                   {rateStr}
                                 </Text>
                             </View>
                         </View>

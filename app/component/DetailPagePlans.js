@@ -28,6 +28,14 @@ export default class Plans extends Component {
         let atype = this.props.atype
         let protectlv = 0;
 
+         let rateStr=null;
+        if(atype == 1 || atype == 4){
+            rateStr=plans.rate + '%'
+        }
+        else{
+            rateStr='浮动';
+        }
+
         if (plans.invest > 0) {
             protectlv = (plans.protectamount / plans.invest * 100).toFixed(2)
         }
@@ -65,9 +73,7 @@ export default class Plans extends Component {
                 <View style={styles.row}>
                     <Text style={{ fontSize: 11, color: '#666' }}>方案{plans.number + ''}换算成年化收益是
                         <Text style={{ color: 'red', paddingLeft: 5 }}>
-                            {atype != 1 ? '浮动' :
-                                plans.rate + '%'
-                            }
+                           {rateStr}
                         </Text>
                     </Text>
                 </View>
