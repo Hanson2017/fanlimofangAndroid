@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         width:40,
     },
     commentListHdName:{
-        width:125,
+        width:80,
     },
     commentListBd: {
         padding: 8,

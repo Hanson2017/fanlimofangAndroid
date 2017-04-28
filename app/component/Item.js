@@ -76,7 +76,7 @@ export default class Item extends Component {
         let ishighest = Common.isTag(data.activity.ishighest, '全网最高', styles);
         let isprotect = Common.isTag(data.activity.isprotect, '魔方保障', styles);
 
-        let repayText = data.repayday == '当日返现' ? data.repayday : data.repayday + '返现'
+        let repayText = data.repayday == '当日返现' ? data.repayday : data.repayday.replace('个','') + '返'
         let repaydays = Common.isTag(data.repayday, repayText, styles);
 
         //关键字
@@ -93,7 +93,7 @@ export default class Item extends Component {
                     <View style={Theme.flexDrow}>
                         <View>
                             <View style={[Theme.flexDrow, { marginRight: 6 }]}>
-                                <Image source={{ uri: uri }} style={{ width: 80, height: 24 }} />
+                                <Image source={{ uri: uri }} style={{ width: 70, height: 28 }} />
                                 <View style={[styles.type, { marginTop: -8, marginLeft: 3 }]}>
                                     <Text style={styles.typeText}>{investType}</Text>
                                 </View>
@@ -185,13 +185,13 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderColor: Theme.color,
         height: 25,
-        minWidth: 68,
+        minWidth: 60,
         alignItems: 'center',
         justifyContent: 'center',
     },
     tagsText: {
         color: Theme.color,
-        fontSize: 12,
+        fontSize: 11,
     },
 
     font17: {

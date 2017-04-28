@@ -10,9 +10,15 @@ class List extends Component {
     render() {
         let data = this.props.data;
         let listNo = parseInt(this.props.index) + 1;
-        let conStr = Util.delHtmlTag(data.con_str);
         let isHidden = this.props.isHidden;
-
+        let conStrs=data.con_str.split('</p>')
+        let conStr=conStrs.map((text,i)=>{
+            let newText=Util.delHtmlTag(text)
+            return (
+                <Text style={styles.listConText}>{newText}</Text>
+                   
+            )
+        })
         return (
             <View style={styles.listView}>
                 <View style={styles.listTitle}><Text style={styles.listTitleText}>{listNo + ''}.{data.title}</Text></View>
@@ -21,7 +27,8 @@ class List extends Component {
                 </TouchableOpacity>
                 {!data.show_state ? null :
                     <View>
-                        <Text style={styles.listConText}>{conStr}</Text>
+                        {conStr}
+                       
                     </View>
                 }
             </View>

@@ -30,18 +30,18 @@ export default class Help extends Component {
                     <Text style={styles.textP}>APP下载请扫描二维码  （安卓版及IOS版均有效）：</Text>
                     <Text style={[styles.textH1,{marginBottom:8,marginTop:10,}]}>返利魔方APP</Text>
                     <Image source={{ uri: Api.domain + '/images/app/appdown.png' }} style={{ width: 180, height: 180 }} />
-                    <Text style={[styles.textH1,{marginTop:15,marginBottom:8}]}>新手操作流程：</Text>
+                    <Text style={[styles.textH1,{marginTop:10,marginBottom:8}]}>新手操作流程：</Text>
                     <Text style={styles.textP}>先说2个关键点：</Text>
                     <Text style={styles.textP}>1.首投活动<Text style={Theme.red}>必须从直达链接跳转到平台进行注册，必须！ </Text>（复投不需要）；</Text>
                     <Text style={styles.textP}>2.严格按照页面里描述的投资规则进行投资，完事了记得在页面下方回帖，留下正确信息以及支付宝帐号，这样才能拿到返利。</Text>
                     <Text style={styles.textP}>下面以投哪网活动为例来讲解具体操作过程。</Text>
-                    <Text style={[styles.textH2,{marginTop:5,marginBottom:5}]}>一、首先从返利魔方APP首页或项目列表页找到你感兴趣的活动，</Text>
+                    <Text style={[styles.textH2,{marginTop:15,marginBottom:5}]}>一、首先从返利魔方APP首页或项目列表页找到你感兴趣的活动，</Text>
                     <Text style={styles.textP}>如下图所示：</Text>
                     <Image resizeMode={'contain'} source={{ uri: Api.domain + '/images/app/p1.png?20170424' }}  style={{ width: 320, height: 159 }} />
                     <Text style={styles.textP}>在上图你可以看到该平台的风控评分和风险等级等信息。</Text>
-                    <Text style={[styles.textH2,{marginTop:5,marginBottom:5}]}>二、如果你对该活动有兴趣，</Text>
-                    <Text style={[styles.textP,styles.blod]}>A、点击进入详情页面进行查看，如下图所示：</Text>
-                    <Image  resizeMode={'contain'}  source={{ uri: Api.domain + '/images/app/p2.png?20170424' }} style={{ width: 320, height: 545 }} />
+                    <Text style={[styles.textH2,{marginTop:10,marginBottom:5}]}>二、如果你对该活动有兴趣，</Text>
+                    <Text style={[styles.textP,styles.blod,{marginBottom:8,marginTop:5,}]}>A、点击进入详情页面进行查看，如下图所示：</Text>
+                    <Image  resizeMode={'contain'}  source={{ uri: Api.domain + '/images/app/p2.png?20170424' }} style={{ width: 320, height: 545 ,marginBottom:10,}} />
                     <Text style={styles.textP}>在上图中我们可以了解到关于活动的大体情况描述，</Text>
                     <Text style={styles.textP}><Text style={styles.blod}>1代表</Text> 方案序号</Text>
                     <Text style={styles.textP}><Text style={styles.blod}>2代表</Text> 每个方案投资是投资多长时间的项目；（投资项目的期限可以比方案要求的更长，但不能短于方案要求的期限。）</Text>
@@ -50,7 +50,7 @@ export default class Help extends Component {
                     <Text style={styles.textP}><Text style={styles.blod}>5代表</Text> 返利魔方给多少返利；（<Text style={Theme.red}>这里就是通过魔方投资可以多得到的钱了</Text>。）</Text>
                     <Text style={styles.textP}><Text style={styles.blod}>6代表</Text> 总收益是多少；</Text>
                     <Text style={styles.textP}><Text style={styles.blod}>7代表</Text> 页面最下面是“直达链接”，需要点击“直达链接”到平台去注册才行哦。</Text>
-                    <Text style={[styles.textP,styles.blod]}>B、点击某个方案下面的“点击查看详情”按钮，可以很清楚得看到投资方案的信息。</Text>
+                    <Text style={[styles.textP,styles.blod,{marginTop:10}]}>B、点击某个方案下面的“点击查看详情”按钮，可以很清楚得看到投资方案的信息。</Text>
                     <Text style={styles.textP}>如下图所示：</Text>
                     <Image resizeMode={'contain'}  source={{ uri: Api.domain + '/images/app/p3.png?20170424' }} style={{ width: 320, height: 549 }} />
                     <Text style={styles.textP}><Text style={styles.blod}>1代表</Text>  投资收益换算成年化收益率是多少</Text>
@@ -66,7 +66,7 @@ export default class Help extends Component {
                         六是返利魔方的返现周期是怎么样的。）
                         </Text>
                     <Text style={styles.textP}><Text style={styles.blod}>5代表</Text>  特别说明，这里是对该活动一些特别需要注意的地方进行描述，请仔细阅读。</Text>
-                    <Text style={styles.textH2}>三 、投资完记得在活动页面回帖</Text>
+                    <Text style={[styles.textH2,{marginTop:15,marginBottom:10}]}>三 、投资完记得在活动页面回帖</Text>
                      <Image resizeMode={'contain'}  source={{ uri: Api.domain + '/images/app/p4.png?20170424' }} style={{ width: 320, height: 361 }} />
                     <Text style={styles.textP}>如上图所示，投资完记得在页面下面跟帖留下投资相关信息，包括你的支付宝帐号。</Text>
                     <Text style={styles.textP}>必须有支付宝帐号，返利魔方工作人员才能把返利支付给你）</Text>

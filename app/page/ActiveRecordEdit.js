@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, ScrollView, TouchableOpacity, TextInput, Alert, DeviceEventEmitter, Modal, Platform, DatePickerAndroid } from 'react-native';
+import { Text, StyleSheet, View, ScrollView, TouchableOpacity, TextInput, Alert, DeviceEventEmitter, Modal, Platform, DatePickerAndroid,Picker } from 'react-native';
 import Theme from '../util/theme';
 import Api from '../util/api';
 import Util from '../util/util';
@@ -82,6 +82,8 @@ export default class ActiveRecordEdit extends Component {
             }
             let planstr = this.state.plan.toString()
 
+
+
             return (
                 <View style={styles.container}>
                     <Header navigator={this.props.navigator} headerText={'活动记录修改'} />
@@ -93,12 +95,32 @@ export default class ActiveRecordEdit extends Component {
                             {useridView}
                             {phoneView}
                             {realnameView}
-                            <TxtInput
-                                label={'所选方案'}
-                                value={planstr}
-                                ViewInput={true}
-                                onPress={this._selectPlan.bind(this)}
-                            />
+                            {Platform.OS === 'ios'?
+                                <TxtInput
+                                    label={'所选方案'}
+                                    value={planstr}
+                                    ViewInput={true}
+                                    onPress={this._selectPlan.bind(this)}
+                                />
+                                :
+                                 <View style={[styles.inputView]}>
+                                    <Text style={styles.label}>所选方案</Text>
+                                    <View style={styles.ViewInput}>
+                                       <Picker
+                                       style={{height:80,color:'#666',}}
+                                        selectedValue={this.state.plan}
+                                        onValueChange={(lang) => {
+                                            this.setState({
+                                                plan:lang
+                                            })
+                                        }}
+                                           >
+                                           {selectList.map((aOption) => <Picker.Item    itemStyle={{fontSize:12}} label={aOption.value} value={aOption.number} key={aOption.number} />)}
+                                            </Picker>
+                                    </View>
+                                </View>
+                            }
+                            
 
                             {investdateView}
                             <TxtInput
@@ -351,5 +373,23 @@ const styles = StyleSheet.create({
     submitBtnText: {
         color: '#fff',
         fontSize: 14,
+    },
+     inputView: {
+        flexDirection: 'row',
+        height: 46,
+        alignItems: 'center',
+        paddingLeft: 10,
+         borderBottomWidth: 1,
+        borderBottomColor: '#f2f2f2',
+    },
+    label: {
+        width: 80,
+        color: '#999'
+    },
+    ViewInput:{
+        flex:1,
+        height: 46,
+        justifyContent:'center',
+        overflow:'hidden'
     }
 })

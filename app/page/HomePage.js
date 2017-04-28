@@ -33,7 +33,7 @@ export default class HomePage extends Component {
                             />
                         }
                     >
-                        <View>
+                        <View style={styles.banner}>
                             <Image source={{ uri: 'http://m.fanlimofang.com/images/banner.jpg' }} resizeMode={'contain'} style={styles.bannerImg} />
                         </View>
                         <Group title={'最新上线活动'} lists={this.state.dataSourceNew} navigator={this.props.navigator} name={'news'} />
@@ -110,7 +110,12 @@ var styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Theme.bgColor,
     },
-
+    banner:{
+        height:129,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     bannerImg: {
         width: Theme.screenWidth,
         height: 129,

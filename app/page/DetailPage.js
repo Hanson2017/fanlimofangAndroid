@@ -488,20 +488,20 @@ const styles = StyleSheet.create({
         borderBottomColor: '#e4e4e4',
     },
     tags: {
-        marginRight: 10,
+        marginRight: 8,
         paddingLeft: 4,
         paddingRight: 4,
         borderWidth: 1,
         borderColor: Theme.color,
         borderRadius: 4,
         height: 25,
-        minWidth: 72,
+        minWidth: 65,
         alignItems: 'center',
         justifyContent: 'center',
     },
     tagsText: {
         color: Theme.color,
-        fontSize: 12,
+        fontSize: 11,
     },
     planList: {
         marginBottom: 10,
