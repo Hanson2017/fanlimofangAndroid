@@ -88,10 +88,10 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.fanlimofang"
+        applicationId "org.zywx.wbpalmstar.widgetone.uex11575732"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
+        versionCode 106
         versionName "2.1.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"

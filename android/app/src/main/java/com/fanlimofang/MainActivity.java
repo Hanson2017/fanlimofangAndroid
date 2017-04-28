@@ -1,4 +1,4 @@
-package com.fanlimofang;
+package org.zywx.wbpalmstar.widgetone.uex11575732;
 
 import com.facebook.react.ReactActivity;
 

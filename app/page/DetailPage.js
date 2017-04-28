@@ -101,7 +101,7 @@ var DetailPage = React.createClass({
                                 </View>
                             )
                     }
-                    else if (acinfo.activity.atype == 3) {
+                    else if (acinfo.activity.atype == 3 || acinfo.activity.atype == 4) {
                         isRisk =
                             (
                                 <View style={[Theme.flexDrow, { marginTop: 10 }]}>

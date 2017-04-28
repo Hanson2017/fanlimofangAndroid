@@ -1,4 +1,4 @@
-package com.fanlimofang.wxapi; // net.sourceforge.simcpux处为你的包名 
+package org.zywx.wbpalmstar.widgetone.uex11575732.wxapi; // net.sourceforge.simcpux处为你的包名 
  
 import android.app.Activity;
 import android.os.Bundle;
