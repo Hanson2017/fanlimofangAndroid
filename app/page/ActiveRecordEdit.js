@@ -182,7 +182,8 @@ export default class ActiveRecordEdit extends Component {
         try {
             var newState = {};
             const { action, year, month, day } = await DatePickerAndroid.open({
-                date: new Date()
+                date: new Date(),
+                 maxDate:new Date()
             });
             if (action !== DatePickerAndroid.dismissedAction) {
                 var date = new Date(year, month, day);

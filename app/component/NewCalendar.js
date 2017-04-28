@@ -62,6 +62,7 @@ export default class Select extends Component {
                         </View>
                         <DatePickerIOS
                             date={this.state.date}
+                            maximumDate={new Date()}
                             mode="date"
                             onDateChange={this.onDateChange.bind(this)}
                         />
