@@ -39,15 +39,15 @@ export default class Plans extends Component {
         if (plans.invest > 0) {
             protectlv = (plans.protectamount / plans.invest * 100).toFixed(2)
         }
-        if (code == ! '') {
+        if (code != '') {
             process = (
                 <View style={styles.row}>
-                    <Text style={{ fontSize: 11 }}>1、通过</Text>
+                     <Text style={{ color: '#666', fontSize: 11 }}>1、通过</Text>
                     <TouchableOpacity onPress={Util.Linked.bind(this, siteUrl)}>
-                        <Text style={{ fontSize: 11 }}>直达链接</Text>
+                        <Text style={{ color: 'red', fontSize: 11 }}>直达链接</Text>
 
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 11 }}>进入网站并注册，邀请码填写 {this.props.code + ''}</Text>
+                    <Text style={{ color: '#666', fontSize: 11 }}>进入网站并注册，邀请码填写 <Text  style={{ color: 'red' }}>{this.props.code + ''}</Text></Text>
                 </View>
             )
         }

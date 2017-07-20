@@ -33,7 +33,12 @@ class Header extends Component {
                     <Icon name='back' size={26} color={'#a9a9a9'} />
                 </TouchableOpacity>
                 <View style={styles.textContainer}>
-                    <Image source={{ uri: uri }} style={{ width: 80, height: 24 }} />
+                    {
+                        uri != null ?
+                            <Image source={{ uri: uri }} style={{ width: 80, height: 24 }} />
+                            :
+                            null
+                    }
                 </View>
             </View>
         )
@@ -60,7 +65,12 @@ var DetailPage = React.createClass({
     render: function () {
 
         if (this.state.loading) {
-            return <Loading />
+            return (
+                <View style={styles.container}>
+                    <Header navigator={this.props.navigator} uri={null} />
+                    <Loading />
+                </View>
+            )
         }
         else {
             let that = this;
@@ -132,7 +142,7 @@ var DetailPage = React.createClass({
                 )
             })
 
-           
+
 
             //推荐理由 
             let reasons = Util.delHtmlTag(acinfo.activity.reasons);
@@ -146,13 +156,13 @@ var DetailPage = React.createClass({
                 let planDetaile = that.state.isHidden[i].hidden ? null : (
                     <Plans plans={dataSource.plans[i]} siteUrl={siteUrl} code={code} periods={periods} atype={acinfo.activity.atype} special={acinfo.activity.special} />
                 )
-                 // 总收益
-                let rebateStr=null;
-                if(acinfo.activity.atype == 1 || acinfo.activity.atype == 4){
-                    rebateStr=plan.rebate + ''
+                // 总收益
+                let rebateStr = null;
+                if (acinfo.activity.atype == 1 || acinfo.activity.atype == 4) {
+                    rebateStr = plan.rebate + ''
                 }
-                else{
-                    rebateStr='浮动';
+                else {
+                    rebateStr = '浮动';
                 }
                 return (
                     <View style={styles.planList} key={i}>
@@ -238,7 +248,7 @@ var DetailPage = React.createClass({
                     <Header navigator={this.props.navigator} uri={uri} />
 
                     <NewSelect ref="select" options={selectList} />
-                    <NewCalendar  ref="Calendar" />
+                    <NewCalendar ref="Calendar" />
                     <View style={{ flex: 1 }}>
                         <ScrollView ref={'scroll'}
                             onContentSizeChange={(contentWidth, contentHeight) => {
@@ -288,9 +298,25 @@ var DetailPage = React.createClass({
                                         <Text style={styles.dtText}>寻求帮助：</Text>
                                     </View>
                                     <View style={styles.ddView}>
-                                        <TouchableOpacity activeOpacity={0.7} style={styles.qqOnline} onPress={Util.Linked.bind(this, 'mqqwpa://im/chat?chat_type=wpa&uin=2881041842&version=1&src_type=web&web_src=fanllimofang.com')}>
-                                            <Text style={styles.qqOnlineText}>QQ在线客服</Text>
-                                        </TouchableOpacity>
+                                        <View style={styles.qqOnlineWP}>
+                                            {
+                                                dataSource.qqservice.split(',').map((text, i) => {
+                                                    return (
+                                                        <TouchableOpacity activeOpacity={0.7} style={styles.qqOnline} onPress={Util.Linked.bind(this, 'mqqwpa://im/chat?chat_type=wpa&uin=' + text + '&version=1&src_type=web&web_src=fanllimofang.com')}>
+                                                            <Text style={styles.qqOnlineText}>QQ在线客服{i + 1}</Text>
+                                                        </TouchableOpacity>
+                                                    )
+                                                })
+                                            }
+
+                                        </View>
+                                        {
+                                            dataSource.qqgroup != '' ?
+                                                <Text style={styles.qqgroup}>返利魔方{dataSource.qqgroup_num + ''}群：{dataSource.qqgroup + ''}</Text>
+                                                :
+                                                null
+                                        }
+
                                     </View>
                                 </View>
                                 <View style={[styles.detailBox, Theme.mt10]}>
@@ -355,11 +381,11 @@ var DetailPage = React.createClass({
             )
         }
     },
-    isShowSelect:function(selectNo,i){
-        this.refs.select.show(selectNo,i)
+    isShowSelect: function (selectNo, i) {
+        this.refs.select.show(selectNo, i)
     },
-    isShowCalendar:function(){
-         this.refs.Calendar.show()
+    isShowCalendar: function () {
+        this.refs.Calendar.show()
     },
     componentDidMount: function () {
         let that = this;
@@ -374,6 +400,7 @@ var DetailPage = React.createClass({
                 if (response.ok) {
                     response.json()
                         .then((responseData) => {
+                            
                             let activity = responseData.data.acinfo.activity
                             let siteUrls = activity.siteurl.split(',')
                             let index = Math.floor((Math.random() * siteUrls.length));
@@ -577,8 +604,14 @@ const styles = StyleSheet.create({
         color: '#34a0e7',
         fontSize: 15,
     },
-    qqOnline: {
+    qqOnlineWP: {
         marginTop: 6,
+        flexDirection: 'row',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+    },
+    qqOnline: {
+        marginRight: 10,
         width: 100,
         height: 30,
         flexDirection: 'row',
@@ -591,6 +624,10 @@ const styles = StyleSheet.create({
         color: '#888',
         fontSize: 13,
     },
+    qqgroup: {
+        paddingTop: 15,
+        color: '#666',
+    }
 })
 
 module.exports = DetailPage;
