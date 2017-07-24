@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, Image, View, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, StyleSheet, Image, View, TouchableOpacity, ScrollView,Platform } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Icomoon';
 import Item from '../component/item';
@@ -9,7 +9,7 @@ import Util from '../../app/util/util'
 class Header extends Component {
     render() {
         return (
-            <View style={styles.headerContainer}>
+             <View style={[styles.headerContainer,Platform.OS != 'ios' ? {marginTop:0}:null]}>
                 <TouchableOpacity style={{ width: 50, paddingLeft: 13, }} onPress={this.goBack.bind(this)}>
                     <Icon name='back' size={26} color={'#a9a9a9'} />
                 </TouchableOpacity>
