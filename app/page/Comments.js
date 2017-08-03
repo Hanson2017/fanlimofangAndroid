@@ -58,7 +58,7 @@ export default class CommentsPage extends Component {
 
     }
     renderRow(rowData, sectionID, rowID) {
-        return <Comment index={rowID} comment={rowData} commentField={this.props.comment_field} key={sectionID + rowID} />
+        return <Comment index={rowID}  commentlNum={this.state.totalNum-rowID} comment={rowData} commentField={this.props.comment_field} key={sectionID + rowID} />
     }
     renderFooter() {
         if (this.state.isLoadMore) {

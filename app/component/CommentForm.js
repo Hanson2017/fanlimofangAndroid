@@ -69,6 +69,7 @@ export default class CommentForm extends Component {
         if (comment_field.indexOf('c_userid') >= 0) {
             useridView = this.CommentFormList('注册ID',
                 {
+                    defaultValue: that.state.listData[i].userid,
                     onChangeText: (text) => {
                         that.state.listData[i].userid = text;
                     },
@@ -105,6 +106,7 @@ export default class CommentForm extends Component {
         if (comment_field.indexOf('c_username') >= 0) {
             realnameView = this.CommentFormList('真实姓名',
                 {
+                    defaultValue: that.state.listData[i].realname,
                     onChangeText: (text) => {
                         that.state.listData[i].realname = text;
                     },

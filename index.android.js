@@ -50,7 +50,7 @@ export default class fanlimofang extends Component {
     codePush.sync()
 
     let that = this;
-    let url = 'http://www.fanlimofang.com/DataApi/GetVersion_android?version=2.1.2'
+    let url = 'http://www.fanlimofang.com/DataApi/GetVersion_android?version=2.1.20'
     fetch(url)
       .then((response) => {
         if (response.ok) {

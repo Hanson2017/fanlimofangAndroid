@@ -48,7 +48,7 @@ export default class Comment extends Component {
             <View style={styles.commentList}>
                 <View style={styles.commentListHd}>
                     <View style={{ flexDirection: 'row' }}>
-                        <Text numberOfLines={1} style={[styles.commentListHdText,styles.commentListHdFlow]}>{parseInt(this.props.index)+1}楼</Text>
+                        <Text numberOfLines={1} style={[styles.commentListHdText,styles.commentListHdFlow]}>{parseInt(this.props.commentlNum)}楼</Text>
                         <Text numberOfLines={1} style={[styles.commentListHdText,styles.commentListHdName]}>{username}</Text>
                         <Text style={styles.commentListHdText}>(回帖已加密)</Text>
                     </View>
@@ -87,10 +87,10 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
     commentListHdFlow:{
-        width:40,
+        width:60,
     },
     commentListHdName:{
-        width:80,
+        width:60,
     },
     commentListBd: {
         padding: 8,

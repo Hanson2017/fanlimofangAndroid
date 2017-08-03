@@ -55,6 +55,7 @@ var DetailPage = React.createClass({
             isRefreshing: false,
             dataSource: null,
             commentData: null,
+            commentlNum: 0,
             siteUrl: null,
             isHidden: [],
             ref: false,
@@ -224,7 +225,7 @@ var DetailPage = React.createClass({
 
             // 评论
             let comments = commentData.map((comment, i) => {
-                return <Comment index={i} comment={comment} commentField={comment_field} />
+                return <Comment index={i} commentlNum={this.state.commentlNum - i} comment={comment} commentField={comment_field} />
             })
 
             let moreComment = null;
@@ -329,50 +330,59 @@ var DetailPage = React.createClass({
                                     </Text>
                                     </View>
                                 </View>
-                                <View style={[styles.detailBox, Theme.mt10]}>
-                                    <View>
-                                        <Text style={styles.dtText}>回帖说明：</Text>
-                                    </View>
-                                    <View style={styles.ddView}>
-                                        <Text style={styles.ddText}>{postinfo}</Text>
-                                    </View>
-                                </View>
-                                {acinfo.activity.comment_picpc ?
 
-                                    <View style={[styles.detailBox, Theme.mt10]}>
+                                {
+                                    acinfo.activity.iscomment == 0 ?
+                                        < View style={[styles.detailBox, Theme.mt10,{marginBottom:10,}]}>
+                                            <Text style={styles.ddText}>本活动仅做优惠信息推送，无需回复投资信息。</Text>
+                                        </View>
+                                        :
                                         <View>
-                                            <Text style={styles.dtText}>回帖注册ID从哪儿找？</Text>
-                                        </View>
-                                        <View style={styles.ddView}>
-                                            <Image resizeMode={'center'} source={{ uri: Api.domain + acinfo.activity.comment_picpc }} style={{ width: Theme.screenWidth - 24, height: 300 * Theme.screenWidth / 750 }} />
+                                            <View style={[styles.detailBox, Theme.mt10]}>
+                                                <View>
+                                                    <Text style={styles.dtText}>回帖说明：</Text>
+                                                </View>
+                                                <View style={styles.ddView}>
+                                                    <Text style={styles.ddText}>{postinfo}</Text>
+                                                </View>
+                                            </View>
+                                            {acinfo.activity.comment_picpc ?
 
-                                        </View>
-                                    </View>
-                                    : null
-                                }
-                                {acinfo.activity.status == 2 ? null :
-                                    < View style={[styles.detailBox, Theme.mt10]}>
-                                        <CommentForm
-                                            ref='CommentForm'
-                                            dataSource={{ comment_field: comment_field, activityid: acinfo.activity.id, periodnumber: acinfo.activity.number, img_invest: acinfo.activity.img_invest }}
-                                            plans={plans}
-                                            navigator={this.props.navigator}
-                                            updataComment={this.getCommentData.bind(this)}
-                                            KeyboardAvoidingViewData={{
-                                                contentHeight: this.state.contentHeight,  //ScrollView滚动容器高度
-                                                moveH: this.state.moveH,   //ScrollView滑动的距离
-                                                scrollViewDom: this.refs.scroll
-                                            }}
-                                            isShowSelect={this.isShowSelect.bind(this)}
-                                            isShowCalendar={this.isShowCalendar.bind(this)}
-                                        />
-                                    </View>
-                                }
+                                                <View style={[styles.detailBox, Theme.mt10]}>
+                                                    <View>
+                                                        <Text style={styles.dtText}>回帖注册ID从哪儿找？</Text>
+                                                    </View>
+                                                    <View style={styles.ddView}>
+                                                        <Image resizeMode={'center'} source={{ uri: Api.domain + acinfo.activity.comment_picpc }} style={{ width: Theme.screenWidth - 24, height: 300 * Theme.screenWidth / 750 }} />
 
-                                <View style={[styles.detailBox, Theme.mt10]}>
-                                    {comments}
-                                    {moreComment}
-                                </View>
+                                                    </View>
+                                                </View>
+                                                : null
+                                            }
+                                            {acinfo.activity.status == 2 ? null :
+                                                < View style={[styles.detailBox, Theme.mt10]}>
+                                                    <CommentForm
+                                                        ref='CommentForm'
+                                                        dataSource={{ comment_field: comment_field, activityid: acinfo.activity.id, periodnumber: acinfo.activity.number, img_invest: acinfo.activity.img_invest }}
+                                                        plans={plans}
+                                                        navigator={this.props.navigator}
+                                                        updataComment={this.getCommentData.bind(this)}
+                                                        KeyboardAvoidingViewData={{
+                                                            contentHeight: this.state.contentHeight,  //ScrollView滚动容器高度
+                                                            moveH: this.state.moveH,   //ScrollView滑动的距离
+                                                            scrollViewDom: this.refs.scroll
+                                                        }}
+                                                        isShowSelect={this.isShowSelect.bind(this)}
+                                                        isShowCalendar={this.isShowCalendar.bind(this)}
+                                                    />
+                                                </View>
+                                            }
+                                            <View style={[styles.detailBox, Theme.mt10]}>
+                                                {comments}
+                                                {moreComment}
+                                            </View>
+                                        </View>
+                                }
                             </View>
                         </ScrollView>
                     </View>
@@ -400,7 +410,7 @@ var DetailPage = React.createClass({
                 if (response.ok) {
                     response.json()
                         .then((responseData) => {
-                            
+
                             let activity = responseData.data.acinfo.activity
                             let siteUrls = activity.siteurl.split(',')
                             let index = Math.floor((Math.random() * siteUrls.length));
@@ -438,8 +448,10 @@ var DetailPage = React.createClass({
                 if (response.ok) {
                     response.json()
                         .then((responseData) => {
+                            console.log(responseData)
                             that.setState({
-                                commentData: responseData.data
+                                commentData: responseData.data,
+                                commentlNum: responseData.totalNum
                             })
                         })
                 }

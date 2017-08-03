@@ -8,19 +8,41 @@ module.exports = {
     _qqlogin(that) {
         QQAPI.login()
             .then((result) => {
-                let url = Api.getUserinfo + '?fromtype=qq&connectid=' + result.openid
+                let access_token = result.access_token;
+                let oauth_consumer_key = result.oauth_consumer_key;
+                let openid = result.openid;
+                let url = 'https://graph.qq.com/user/get_user_info?access_token=' + access_token + '&oauth_consumer_key=' + oauth_consumer_key + '&openid=' + openid;
                 fetch(url)
                     .then((response) => {
                         if (response.ok) {
                             response.json()
                                 .then((responseData) => {
-                                    if (responseData.result == 1) {
-                                        StorageLoginInfo.storageSave(responseData);
-                                        that.goBackSuccee()
 
-                                    }
-                                    else {
-                                        Alert.alert('提示', responseData.resultmsg)
+                                    if (responseData.ret == 0) {
+
+                                        let urlN = Api.getUserinfo + '?fromtype=qq&connectid=' + result.openid + '&username=' + responseData.nickname;
+
+                                        fetch(urlN)
+                                            .then((res) => {
+                                                if (res.ok) {
+                                                    res.json()
+                                                        .then((resData) => {
+                                                            if (resData.result == 1) {
+                                                                StorageLoginInfo.storageSave(resData);
+                                                                that.goBackSuccee();
+                                                            }
+                                                            else {
+                                                                alert('提示', resData.resultmsg)
+                                                            }
+                                                        })
+                                                }
+                                                else {
+                                                    console.log('网络请求失败')
+                                                }
+                                            })
+                                            .catch((error) => {
+                                                console.log('error:', error)
+                                            })
                                     }
                                 })
                         }
@@ -31,37 +53,54 @@ module.exports = {
                     .catch((error) => {
                         console.log('error:', error)
                     })
-                console.log('result is', result)
             })
             .catch((error) => { console.log('error is', error) });
     },
     _wechatlogin(that) {
-
         WechatAPI.login()
             .then((result) => {
                 let appid = result.appid;
-                // let secret = '3a5ec9b9d9ac60c38cb554e314c8a9d3' 
                 let secret = '5b835e079361c2cc8fe39a82e23412d7'
                 let code = result.code;
-                let url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + appid + '&secret=' + secret + '&code=' + code + '&grant_type=authorization_code'
+                let url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + appid + '&secret=' + secret + '&code=' + code + '&grant_type=authorization_code';
                 fetch(url)
                     .then((response) => {
                         if (response.ok) {
                             response.json()
                                 .then((res) => {
-                                    let urlF = Api.getUserinfo + '?fromtype=wx&connectid=' + res.openid
-                                    fetch(urlF)
-                                        .then((response) => {
-                                            if (response.ok) {
-                                                response.json()
-                                                    .then((resData) => {
-                                                        if (resData.result == 1) {
-                                                            StorageLoginInfo.storageSave(resData);
-                                                            that.goBackSuccee()
-                                                        }
-                                                        else {
-                                                            Alert.alert('提示', resData.resultmsg)
-                                                        }
+                                    let access_token = res.access_token;
+                                    let openid = res.openid;
+                                    let urlInfo = 'https://api.weixin.qq.com/sns/userinfo?access_token=' + access_token + '&openid=' + openid;
+
+                                    fetch(urlInfo)
+                                        .then((resInfo) => {
+                                            if (resInfo.ok) {
+                                                resInfo.json()
+                                                    .then((resInfo) => {
+
+                                                        let urlN = Api.getUserinfo + '?fromtype=wx&connectid=' + openid + '&username=' + resInfo.nickname + '&unionid=' + resInfo.unionid;
+                                                        console.log(resInfo)
+                                                        fetch(urlN)
+                                                            .then((ress) => {
+                                                                if (ress.ok) {
+                                                                    ress.json()
+                                                                        .then((ressData) => {
+                                                                            if (ressData.result == 1) {
+                                                                                StorageLoginInfo.storageSave(ressData);
+                                                                                that.goBackSuccee();
+                                                                            }
+                                                                            else {
+                                                                                alert('提示', resData.resultmsg)
+                                                                            }
+                                                                        })
+                                                                }
+                                                                else {
+                                                                    console.log('网络请求失败1')
+                                                                }
+                                                            })
+                                                            .catch((error) => {
+                                                                console.log('error:', error)
+                                                            })
                                                     })
                                             }
                                             else {
@@ -71,7 +110,6 @@ module.exports = {
                                         .catch((error) => {
                                             console.log('error:', error)
                                         })
-                                    console.log(res)
                                 })
                         }
                         else {

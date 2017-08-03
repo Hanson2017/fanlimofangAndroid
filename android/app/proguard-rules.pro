@@ -74,3 +74,8 @@ def enableProguardInReleaseBuilds = true
 -dontwarn java.nio.file.*
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 -dontwarn okio.**
+
+
+
+-keep class com.tencent.stat.* { ;}
+-keep class com.tencent.mid.* { ;}

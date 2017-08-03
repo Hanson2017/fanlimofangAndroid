@@ -2,6 +2,9 @@ package org.zywx.wbpalmstar.widgetone.uex11575732;
 
 import com.facebook.react.ReactActivity;
 
+import android.app.Application;
+import cn.jpush.android.api.JPushInterface;
+
 public class MainActivity extends ReactActivity {
 
     /**
@@ -12,4 +15,17 @@ public class MainActivity extends ReactActivity {
     protected String getMainComponentName() {
         return "fanlimofang";
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
+    }
+    
 }
