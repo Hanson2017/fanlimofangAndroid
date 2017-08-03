@@ -313,7 +313,15 @@ var DetailPage = React.createClass({
                                         </View>
                                         {
                                             dataSource.qqgroup != '' ?
-                                                <Text style={styles.qqgroup}>返利魔方{dataSource.qqgroup_num + ''}群：{dataSource.qqgroup + ''}</Text>
+                                                <TouchableOpacity
+                                                    onPress={() => {
+                                                        let key = dataSource.qqgroup_key;
+                                                        let linkUrl = "mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key;
+                                                        Util.Linked(linkUrl)
+                                                    }}
+                                                >
+                                                    <Text style={styles.qqgroup}>返利魔方{dataSource.qqgroup_num + ''}群：{dataSource.qqgroup + ''}</Text>
+                                                </TouchableOpacity>
                                                 :
                                                 null
                                         }
@@ -333,7 +341,7 @@ var DetailPage = React.createClass({
 
                                 {
                                     acinfo.activity.iscomment == 0 ?
-                                        < View style={[styles.detailBox, Theme.mt10,{marginBottom:10,}]}>
+                                        < View style={[styles.detailBox, Theme.mt10, { marginBottom: 10, }]}>
                                             <Text style={styles.ddText}>本活动仅做优惠信息推送，无需回复投资信息。</Text>
                                         </View>
                                         :
