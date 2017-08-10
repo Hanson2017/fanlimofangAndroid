@@ -44,7 +44,7 @@ export default class Detail extends Component {
                 <View style={{ flex: 1 }}>
                     <Header navigator={this.props.navigator} />
                     <ScrollView style={styles.container}>
-                        <Text style={styles.title}>{data.title}{this.props.type}</Text>
+                        <Text style={styles.title}>{data.title}</Text>
                         <Text style={styles.updata}>{Util.setDate(new Date(data.inputtime * 1000))}</Text>
                         <View style={{ marginTop: 15, marginBottom: 15, }}>
                             <Image source={{ uri: data.img_2 }} style={{ width: 240, height: 180 }} />

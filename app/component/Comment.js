@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Util from '../util/util';
 
-function transformF(data){
-    var d=data.replace(/[\d\D]/g,'*');
+function transformF(data) {
+    var d = data.replace(/[\d\D]/g, '*');
     return d;
 }
 
@@ -17,11 +17,26 @@ export default class Comment extends Component {
 
         let commentInfo;
 
-        let c_userid=transformF(comment.c_userid)
-        let c_phone=transformF(comment.c_phone)
-        let c_username=transformF(comment.c_username)
-        let alipayid=transformF(comment.alipayid)
-        let username=transformF(comment.username)
+        let c_userid;
+        let c_phone;
+        let c_username;
+        let alipayid;
+        let username;
+
+        if (signState && signState.r_id > 0 && signState.r_id == comment.memberid) {
+            c_userid = comment.c_userid;
+            c_phone = comment.c_phone;
+            c_username = comment.c_username;
+            alipayid = comment.alipayid;
+            username = comment.username;
+        }
+        else {
+            c_userid = transformF(comment.c_userid)
+            c_phone = transformF(comment.c_phone)
+            c_username = transformF(comment.c_username)
+            alipayid = transformF(comment.alipayid)
+            username = transformF(comment.username)
+        }
 
         if (commentField.indexOf('c_userid') >= 0) {
             var useridView = (
@@ -48,9 +63,14 @@ export default class Comment extends Component {
             <View style={styles.commentList}>
                 <View style={styles.commentListHd}>
                     <View style={{ flexDirection: 'row' }}>
-                        <Text numberOfLines={1} style={[styles.commentListHdText,styles.commentListHdFlow]}>{parseInt(this.props.commentlNum)}楼</Text>
-                        <Text numberOfLines={1} style={[styles.commentListHdText,styles.commentListHdName]}>{username}</Text>
-                        <Text style={styles.commentListHdText}>(回帖已加密)</Text>
+                        <Text numberOfLines={1} style={[styles.commentListHdText, styles.commentListHdFlow]}>{parseInt(this.props.commentlNum)}楼</Text>
+                        <Text numberOfLines={1} style={[styles.commentListHdText, styles.commentListHdName]}>{username}</Text>
+                        {
+                            signState && signState.r_id > 0 && signState.r_id == comment.memberid ?
+                                null
+                                :
+                                <Text style={styles.commentListHdText}>(回帖已加密)</Text>
+                        }
                     </View>
                     <View><Text style={styles.commentListHdText}>{addtime}</Text></View>
                 </View>
@@ -58,7 +78,7 @@ export default class Comment extends Component {
                     {useridView}
                     {phoneView}
                     {realnameView}
-                    <Text style={styles.commentListBdText}>方案：{comment.plannumber+''}(第{comment.periodnumber+''}期)</Text>
+                    <Text style={styles.commentListBdText}>方案：{comment.plannumber + ''}(第{comment.periodnumber + ''}期)</Text>
                     {investdateView}
                     <Text style={styles.commentListBdText}>支付宝账号：{alipayid}</Text>
                 </View>
@@ -86,11 +106,11 @@ const styles = StyleSheet.create({
     commentListHdText: {
         color: '#fff',
     },
-    commentListHdFlow:{
-        width:60,
+    commentListHdFlow: {
+        width: 60,
     },
-    commentListHdName:{
-        width:60,
+    commentListHdName: {
+        width: 60,
     },
     commentListBd: {
         padding: 8,

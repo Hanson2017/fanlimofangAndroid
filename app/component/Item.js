@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, Image, View, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, Image, View, TouchableOpacity,Platform } from 'react-native';
 import Theme from '../util/theme';
 import Api from '../util/api';
 import Util from '../util/util';
@@ -32,35 +32,28 @@ export default class Item extends Component {
                 if (data.activity.atype == 1) {
                     isRisk =
                         (
-                            <View style={[Theme.flexDrow, { marginTop: 10 }]}>
+                            <View style={[Theme.flexDrow]}>
                                 <Tags tagsName={'风控分:' + data.plat.riskscore} styles={styles} />
                                 <Tags tagsName={risklevel} styles={styles} />
-
                             </View>
                         )
                 }
                 else if (data.activity.atype == 2) {
                     isRisk =
                         (
-                            <View style={[Theme.flexDrow, { marginTop: 10 }]}>
-                                <Tags tagsName={'黄金类产品'} styles={styles} />
-                            </View>
+                             <Tags tagsName={'黄金类产品'} styles={styles} />
                         )
                 }
                 else if (data.activity.atype == 3 || data.activity.atype == 4) {
                     isRisk =
                         (
-                            <View style={[Theme.flexDrow, { marginTop: 10 }]}>
-                                <Tags tagsName={'基金类产品'} styles={styles} />
-                            </View>
+                             <Tags tagsName={'基金类产品'} styles={styles} />
                         )
                 }
                 else {
                     isRisk =
                         (
-                            <View style={[Theme.flexDrow, { marginTop: 10 }]}>
-                                <Tags tagsName={'其他类产品'} styles={styles} />
-                            </View>
+                            <Tags tagsName={'其他类产品'} styles={styles} />
                         )
                 }
                 break;
@@ -76,75 +69,67 @@ export default class Item extends Component {
         let ishighest = Common.isTag(data.activity.ishighest, '全网最高', styles);
         let isprotect = Common.isTag(data.activity.isprotect, '魔方保障', styles);
 
-        let repayText = data.repayday == '当日返现' ? data.repayday : data.repayday.replace('个','') + '返'
+        let repayText = data.repayday == '当日返现' ? data.repayday : data.repayday.replace('个', '') + '返'
         let repaydays = Common.isTag(data.repayday, repayText, styles);
 
-        let rateStr=null;
-        if(data.activity.atype == 1 || data.activity.atype == 4){
-            rateStr=data.activity.rate + '%'
+        let rateStr = null;
+        if (data.activity.atype == 1 || data.activity.atype == 4) {
+            rateStr = data.activity.rate + '%'
         }
-        else{
-            rateStr='浮动';
+        else {
+            rateStr = '浮动';
         }
-         
+
 
         //关键字
         let keywords = Util.formatSymbol(data.activity.keywords);
-        keywords = keywords.map((keyword, i) => {
-            return (
-                <View style={{ marginTop: 5 }} key={i}><Text style={{ color: '#bdbaba', fontSize: 11 }}>{keyword}</Text></View>
-            )
-        })
 
         return (
-            <TouchableOpacity onPress={this.goDetail.bind(this, data.activity.id, data.plat.platname)} style={styles.item} activeOpacity={0.8}>
-                <View style={{ flex: 1 }}>
-                    <View style={Theme.flexDrow}>
-                        <View>
-                            <View style={[Theme.flexDrow, { marginRight: 6 }]}>
-                                <Image source={{ uri: uri }} style={{ width: 70, height: 28 }} />
-                                <View style={[styles.type, { marginTop: -8, marginLeft: 3 }]}>
-                                    <Text style={styles.typeText}>{investType}</Text>
+            <View>
+               
+                <TouchableOpacity onPress={this.goDetail.bind(this, data.activity.id, data.plat.platname)} style={styles.item} activeOpacity={0.8}>
+                    <View style={[Theme.flexDrow, styles.listHd,Platform.OS=='android'?{paddingTop:5}:null]}>
+                        <Image source={{ uri: uri }} style={{ width: 70, height: 28 }} />
+                        <View style={[Theme.flexDrow, { marginTop: -5, marginLeft: 8 }]}>
+                            <View style={styles.listHdType}><Text style={styles.listHdTypeText}>{investType}</Text></View>
+                            {
+                                keywords.map((keyword, i) => {
+                                    return (
+                                        <View style={styles.listHdType}><Text style={styles.listHdTypeText}>{keyword}</Text></View>
+                                    )
+                                })
+                            }
+                        </View>
+                    </View>
+                    <View style={[Theme.flexDrow, Theme.mt15, { justifyContent: 'space-between', }]}>
+                        <View style={[Theme.flexDrow]}>
+                            <View style={{ width: (Theme.screenWidth-10)/3 }}>
+                                <View><Text style={Theme.c666}>投{data.activity.invest + ''}获得</Text></View>
+                                <View style={Theme.mt5}><Text style={[Theme.red, styles.font17]}>{data.activity.rebate + ''}</Text></View>
+                            </View>
+                            <View style={{ width: Theme.screenWidth/3 }}>
+                                <View><Text style={Theme.c666}>相当于年化</Text></View>
+                                <View style={Theme.mt5}>
+                                    <Text style={[Theme.red, styles.font17]}>
+                                        {rateStr}
+                                    </Text>
                                 </View>
                             </View>
                             <View>
-                                {keywords}
+                                <View><Text style={Theme.c666}>已参加</Text></View>
+                                <View style={Theme.mt5}><Text style={[styles.font17, { color: '#999' }]}>{data.commentnum + ''}人</Text></View>
                             </View>
                         </View>
-
-                        <View>
-                            <View style={Theme.flexDrow}>
-                                {ishighest}
-                                {isprotect}
-                                {repaydays}
-                            </View>
-                            {isRisk}
-                        </View>
+                        
                     </View>
-
-                    <View style={[Theme.flexDrow, Theme.mt15]}>
-                        <View style={{ width: 120 }}>
-                            <View><Text style={Theme.c666}>投{data.activity.invest + ''}获得</Text></View>
-                            <View style={Theme.mt5}><Text style={[Theme.red, styles.font17]}>{data.activity.rebate + ''}</Text></View>
-                        </View>
-                        <View style={{ width: 110 }}>
-                            <View><Text style={Theme.c666}>相当于年化</Text></View>
-                            <View style={Theme.mt5}>
-                                <Text style={[Theme.red, styles.font17]}>
-                                   {rateStr}
-                                </Text>
-                            </View>
-                        </View>
-                        <View>
-                            <View><Text style={Theme.c666}>已参加</Text></View>
-                            <View style={Theme.mt5}><Text style={[styles.font17, { color: '#999' }]}>{data.commentnum + ''}人</Text></View>
-                        </View>
+                    <View style={[styles.listFt,Theme.flexDrow,{}]}>
+                        {isRisk}
+                        {ishighest}
+                        {isprotect}
+                        {repaydays}
                     </View>
-                    <View style={[styles.btnJoin, btnJoinOver, Theme.mt10]}>
-                        <Text style={styles.btnJoinText}>{joinText}</Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
+                </TouchableOpacity>
+            </View>
         )
     }
     goDetail(id, name) {
@@ -168,36 +153,22 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         paddingBottom: 15,
         backgroundColor: '#fff',
-        flexDirection: 'row',
         marginBottom: 10,
     },
-    type: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 3,
-        height: 20,
-        width: 30,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    typeText: {
-        color: '#999',
-        fontSize: 12,
-    },
     tags: {
-        marginRight: 6,
-        paddingLeft: 4,
-        paddingRight: 4,
+        marginRight: 5,
+        paddingLeft: 3,
+        paddingRight: 3,
         borderWidth: 1,
-        borderRadius: 4,
-        borderColor: Theme.color,
-        height: 25,
-        minWidth: 60,
+        borderRadius: 3,
+        borderColor: '#cdcdcd',
+        height: 24,
+        minWidth: 52,
         alignItems: 'center',
         justifyContent: 'center',
     },
     tagsText: {
-        color: Theme.color,
+        color: '#ccc',
         fontSize: 11,
     },
 
@@ -209,21 +180,51 @@ const styles = StyleSheet.create({
         marginLeft: 25,
         marginRight: 25,
     },
-    btnJoin: {
+
+    // new
+    listHd: {
         flex: 1,
-        height: 40,
+        paddingBottom: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#f2f2f2',
+    },
+    listHdType: {
+        marginRight: 8,
+        paddingLeft: 4,
+        paddingRight: 4,
+        borderWidth: 1,
+        borderRadius: 3,
+        borderColor: Theme.color,
+        height: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    listHdTypeText: {
+        color: Theme.color,
+        fontSize: 12,
+    },
+    listbdBtnWp: {
+        paddingLeft: 10,
+        borderLeftWidth: 1,
+        borderLeftColor: '#f2f2f2',
+    },
+    btnJoinNew: {
+        width: 70,
+        height: 30,
         backgroundColor: Theme.color,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 5,
+        borderRadius: 4,
     },
-    btnJoinOver: {
-        backgroundColor: '#ccc',
-    },
-    btnJoinText: {
-        fontSize: 18,
+    btnJoinNewText: {
+        fontSize: 14,
         color: '#fff',
     },
-
+    listFt: {
+        marginTop: 15,
+        paddingTop: 10,
+        borderTopWidth: 1,
+        borderTopColor: '#f2f2f2',
+    }
 })
 

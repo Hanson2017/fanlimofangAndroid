@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Icomoon';
 
 import Home from './home'
 import ListPage from '../component/list'
+import PlatListPage from '../component/platList'
 
 export default class TabBar extends Component {
     static defaultProps = {
@@ -18,7 +19,7 @@ export default class TabBar extends Component {
         super(props)
         this.state = {
             selectedTab: 'home',
-            tabName: ['首页', '行业', '平台', '预警']
+            tabName: ['首页', '行业资讯', '平台流量', '平台评级']
         }
     }
     render() {
@@ -38,7 +39,7 @@ export default class TabBar extends Component {
                         })
                     }}
                 >
-                    <Home  navigator={this.props.navigator} />
+                    <Home navigator={this.props.navigator} />
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     title={this.state.tabName[1]}
@@ -53,7 +54,7 @@ export default class TabBar extends Component {
                         })
                     }}
                 >
-                    <ListPage  navigator={this.props.navigator} type={65} title={'行业资讯'} />
+                    <ListPage navigator={this.props.navigator} type={65} title={'行业资讯'} />
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     title={this.state.tabName[2]}
@@ -68,7 +69,7 @@ export default class TabBar extends Component {
                         })
                     }}
                 >
-                       <ListPage  navigator={this.props.navigator} type={66} title={'平台资讯'} />
+                     <PlatListPage navigator={this.props.navigator} title={'综合流量'} typeInfo={{typeText:'综合流量',typeField:'score',column:'flow',type:'all',dataName:'dataList'}} />
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     title={this.state.tabName[3]}
@@ -83,14 +84,14 @@ export default class TabBar extends Component {
                         })
                     }}
                 >
-                    <ListPage  navigator={this.props.navigator} type={57} title={'预警资讯'} />
+                    <PlatListPage navigator={this.props.navigator} title={'综合评级'} typeInfo={{typeText:'综合指数',typeField:'score',column:'pingji',type:'all',dataName:'gradeList'}} />
                 </TabNavigator.Item>
-               
+
             </TabNavigator>
         )
     }
     componentDidMount() {
-             
+
     }
 }
 
