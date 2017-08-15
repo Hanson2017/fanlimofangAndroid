@@ -23,7 +23,7 @@ export default class Comment extends Component {
         let alipayid;
         let username;
 
-        if (signState && signState.r_id > 0 && signState.r_id == comment.memberid) {
+        if (signState && signState.r_id > 0 && signState.r_id == comment.memberid && comment.status != 3) {
             c_userid = comment.c_userid;
             c_phone = comment.c_phone;
             c_username = comment.c_username;

@@ -18,6 +18,7 @@ module.exports = {
     memberModPass: host + 'memberModPass',
     memberSet: host + 'memberSet?memberid=',
     memberModSet: host + 'memberModSet',
+    memberdelcomment:host+'memberdelcomment',//删除留言
     getUserinfo: host + 'GetUserinfo', //QQ,wechat 登录
     getInfoList: host + 'GetInfoList' //常用问答
 }
