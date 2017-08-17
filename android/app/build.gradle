@@ -91,13 +91,13 @@ android {
         applicationId "org.zywx.wbpalmstar.widgetone.uex11575732"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 107
-        versionName "2.1.2"
+        versionCode 109
+        versionName "2.1.4"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
        manifestPlaceholders = [
-            QQ_APPID: "101346676",         
+            QQ_APPID: "1105723862",      // 1105723862 101346676               
             WX_APPID:"wx2a5779a8fdf8ff4b",
             JPUSH_APPKEY: "27026d89e3c820596b88e4c1",
             APP_CHANNEL: "极光安卓"    //应用渠道号
