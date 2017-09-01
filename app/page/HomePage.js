@@ -34,7 +34,7 @@ export default class HomePage extends Component {
                         }
                     >
                         <View style={styles.banner}>
-                            <Image source={{ uri: 'http://m.fanlimofang.com/images/banner.jpg' }} resizeMode={'contain'} style={styles.bannerImg} />
+                            <Image source={{ uri: 'http://m.fanlimofang.com/images/banner.jpg' }} resizeMode={'cover'} style={styles.bannerImg} />
                         </View>
                         <Group title={'最新上线活动'} lists={this.state.dataSourceNew} navigator={this.props.navigator} name={'news'} />
                         <Group title={'热门首投活动'} lists={this.state.dataSourceFirst} navigator={this.props.navigator} name={'hot'} />
