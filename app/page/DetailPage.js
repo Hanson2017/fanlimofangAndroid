@@ -171,7 +171,7 @@ var DetailPage = React.createClass({
                             <View style={[styles.planTd1, styles.planTd]}><Text style={styles.planTdText}>{plan.number + ''}</Text></View>
                             <View style={[styles.planTd2, styles.planTd]}><Text style={styles.planTdText}>{plan.termdescription}</Text></View>
                             <View style={[styles.planTd3, styles.planTd]}><Text style={styles.planTdText}>{plan.projects}</Text></View>
-                            <View style={[styles.planTd4, styles.planTd]}><Text style={styles.planTdText}>{plan.invest + ''}+</Text></View>
+                            <View style={[styles.planTd4, styles.planTd]}><Text style={styles.planTdText}>≥ {plan.invest + ''}</Text></View>
                             <View style={[styles.planTd5, styles.planTd]}><Text style={[styles.planTdText, Theme.red]}>{plan.mfrebate + ''}</Text></View>
                             <View style={[styles.planTd]}>
                                 <Text style={[styles.planTdText]}>
