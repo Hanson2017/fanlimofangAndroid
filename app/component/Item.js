@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, Image, View, TouchableOpacity,Platform } from 'react-native';
+import { Text, StyleSheet, Image, View, TouchableOpacity, Platform } from 'react-native';
 import Theme from '../util/theme';
 import Api from '../util/api';
 import Util from '../util/util';
@@ -41,13 +41,19 @@ export default class Item extends Component {
                 else if (data.activity.atype == 2) {
                     isRisk =
                         (
-                             <Tags tagsName={'黄金类产品'} styles={styles} />
+                            <Tags tagsName={'黄金类产品'} styles={styles} />
                         )
                 }
-                else if (data.activity.atype == 3 || data.activity.atype == 4) {
+                else if (data.activity.atype == 3) {
                     isRisk =
                         (
-                             <Tags tagsName={'基金类产品'} styles={styles} />
+                            <Tags tagsName={'基金类产品'} styles={styles} />
+                        )
+                }
+                else if (data.activity.atype == 4) {
+                    isRisk =
+                        (
+                            <Tags tagsName={'固收类产品'} styles={styles} />
                         )
                 }
                 else {
@@ -86,9 +92,9 @@ export default class Item extends Component {
 
         return (
             <View>
-               
+
                 <TouchableOpacity onPress={this.goDetail.bind(this, data.activity.id, data.plat.platname)} style={styles.item} activeOpacity={0.8}>
-                    <View style={[Theme.flexDrow, styles.listHd,Platform.OS=='android'?{paddingTop:5}:null]}>
+                    <View style={[Theme.flexDrow, styles.listHd, Platform.OS == 'android' ? { paddingTop: 5 } : null]}>
                         <Image source={{ uri: uri }} style={{ width: 70, height: 28 }} />
                         <View style={[Theme.flexDrow, { marginTop: -5, marginLeft: 8 }]}>
                             <View style={styles.listHdType}><Text style={styles.listHdTypeText}>{investType}</Text></View>
@@ -103,11 +109,11 @@ export default class Item extends Component {
                     </View>
                     <View style={[Theme.flexDrow, Theme.mt15, { justifyContent: 'space-between', }]}>
                         <View style={[Theme.flexDrow]}>
-                            <View style={{ width: (Theme.screenWidth-10)/3 }}>
+                            <View style={{ width: (Theme.screenWidth - 10) / 3 }}>
                                 <View><Text style={Theme.c666}>投{data.activity.invest + ''}获得</Text></View>
                                 <View style={Theme.mt5}><Text style={[Theme.red, styles.font17]}>{data.activity.rebate + ''}</Text></View>
                             </View>
-                            <View style={{ width: Theme.screenWidth/3 }}>
+                            <View style={{ width: Theme.screenWidth / 3 }}>
                                 <View><Text style={Theme.c666}>相当于年化</Text></View>
                                 <View style={Theme.mt5}>
                                     <Text style={[Theme.red, styles.font17]}>
@@ -120,14 +126,23 @@ export default class Item extends Component {
                                 <View style={Theme.mt5}><Text style={[styles.font17, { color: '#999' }]}>{data.commentnum + ''}人</Text></View>
                             </View>
                         </View>
-                        
+
                     </View>
-                    <View style={[styles.listFt,Theme.flexDrow,{}]}>
+                    <View style={[styles.listFt, Theme.flexDrow, {}]}>
                         {isRisk}
                         {ishighest}
                         {isprotect}
                         {repaydays}
                     </View>
+                    {
+                        data.activity.status == 2 ?
+                            <View style={styles.maskView}>
+                                <View style={styles.mask}></View>
+                                <View style={styles.maskText}><Text style={styles.maskTextT}>已结束</Text></View>
+                            </View>
+                            :
+                            null
+                    }
                 </TouchableOpacity>
             </View>
         )
@@ -147,6 +162,8 @@ export default class Item extends Component {
 
 const styles = StyleSheet.create({
     item: {
+        height: 174,
+        position: 'relative',
         flex: 1,
         paddingLeft: 10,
         paddingRight: 10,
@@ -154,6 +171,30 @@ const styles = StyleSheet.create({
         paddingBottom: 15,
         backgroundColor: '#fff',
         marginBottom: 10,
+    },
+    maskView: {
+        width: Theme.screenWidth,
+        height: 174,
+        position: 'absolute',
+    },
+    mask: {
+        width: Theme.screenWidth,
+        height: 174,
+        position: 'absolute',
+        backgroundColor: 'rgba(52, 52, 52, 0.5)'
+    },
+    maskText: {
+        width: Theme.screenWidth,
+        height: 174,
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'absolute',
+        backgroundColor: 'rgba(52,52,52,0)',
+    },
+    maskTextT: {
+        fontSize: 26,
+        color: '#fff',
+        fontWeight: 'bold',
     },
     tags: {
         marginRight: 5,

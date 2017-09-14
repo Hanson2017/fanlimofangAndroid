@@ -91,8 +91,8 @@ android {
         applicationId "org.zywx.wbpalmstar.widgetone.uex11575732"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 109
-        versionName "2.1.4"
+        versionCode 110
+        versionName "2.1.5"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }

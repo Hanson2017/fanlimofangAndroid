@@ -7,6 +7,7 @@ module.exports = {
     domain: 'http://www.fanlimofang.com',
     home: host + 'GetHome',
     list: host + 'GetActivityList',
+    listTag: host + 'GetActivityList_tag',
     detail: host + 'GetActivityDetail',
     comment: host + 'GetCommentList',
     login: host + 'Login',

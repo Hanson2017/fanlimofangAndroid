@@ -129,8 +129,14 @@ export default class ListPage extends Component {
                 dataSource2: [],
             })
         }
+        var url 
 
-        let url = Api.list + '?type=' + this.props.type + '&page=' + this.page + '&pagesize=10';
+        if(this.props.tType && this.props.tType == 'listTag'){
+            url = Api.listTag + '?type=' + this.props.type + '&page=' + this.page + '&pagesize=10';
+        }
+        else{
+            url = Api.list + '?type=' + this.props.type + '&page=' + this.page + '&pagesize=10';
+        }
 
         setTimeout(() => {
             fetch(url)

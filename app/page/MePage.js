@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Icomoon';
 import Theme from '../util/theme';
 import StorageLoginInfo from '../config/storageLogin'
 
+import Header from '../component/Header';
 import Login from '../page/LoginPage'
 import ActiveRecord from '../page/ActiveRecord'
 import ChangePassword from '../page/ChangePassword'
@@ -55,7 +56,7 @@ export default class MePage extends Component {
         if (signState === null) {
             accountHeader =
                 (
-                    <View style={[styles.accountHeader,Platform.OS=='android'?{marginTop:0}:null]}>
+                    <View style={[styles.accountHeader,Platform.OS=='android' || this.props.source?{marginTop:0}:null]}>
                         <TouchableOpacity onPress={this.goLogin.bind(this)}>
                             <Text style={styles.accountHeaderTouch}>登录</Text>
                         </TouchableOpacity>
@@ -68,7 +69,7 @@ export default class MePage extends Component {
         else {
             accountHeader =
                 (
-                    <View style={[styles.accountHeader,Platform.OS=='android'?{marginTop:0}:null]}>
+                    <View style={[styles.accountHeader,Platform.OS=='android' || this.props.source?{marginTop:0}:null]}>
                         <Text style={styles.accountHeaderText}>欢迎您，{signState.r_username}</Text>
                     </View>
                 )
@@ -89,6 +90,13 @@ export default class MePage extends Component {
 
         return (
             <View style={styles.container}>
+                {
+                    this.props.source?
+                    <Header navigator={this.props.navigator} headerText={'个人中心'} backView={'login'} />
+                    :
+                    null
+                }
+                
                 {accountHeader}
                 <View style={styles.accountBar}>
                     <List text={'活动记录'} iconName={'activeRecord'} iconSize={17} iconColor={'#999'}

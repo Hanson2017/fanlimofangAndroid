@@ -112,11 +112,19 @@ var DetailPage = React.createClass({
                                 </View>
                             )
                     }
-                    else if (acinfo.activity.atype == 3 || acinfo.activity.atype == 4) {
+                    else if (acinfo.activity.atype == 3) {
                         isRisk =
                             (
                                 <View style={[Theme.flexDrow, { marginTop: 10 }]}>
                                     <Tags tagsName={'基金类产品'} styles={styles} />
+                                </View>
+                            )
+                    }
+                    else if (acinfo.activity.atype == 4) {
+                        isRisk =
+                            (
+                                <View style={[Theme.flexDrow, { marginTop: 10 }]}>
+                                    <Tags tagsName={'固收类产品'} styles={styles} />
                                 </View>
                             )
                     }

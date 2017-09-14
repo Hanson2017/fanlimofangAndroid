@@ -18,10 +18,11 @@ export default class Login extends Component {
         }
     }
     render() {
+
         return (
             <View style={styles.container}>
 
-                <Header navigator={this.props.navigator} headerText={'用户登录'} backView={'null'} />
+                <Header navigator={this.props.navigator} headerText={'用户登录'} backView={this.props.source?'login':'null'} />
                 <ScrollView style={styles.content}>
                     <View style={styles.loginlogo}>
                         <Image source={require('../../resources/images/logo.png')} style={{ width: 178, height: 50 }} />
@@ -46,9 +47,15 @@ export default class Login extends Component {
     
     goBackSuccee() {
         DeviceEventEmitter.emit('loginState', '登录好了')
-        this.props.navigator.replacePrevious({
-            component: MainPage
-        })
+        if(this.props.source && this.props.source == 'home'){
+            this.props.navigator.pop();
+        }
+        else{
+            this.props.navigator.replace({
+                component: MainPage
+            })
+        }
+        
     }
     goOtherLogin(){
         this.props.navigator.push({
