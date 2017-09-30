@@ -26,7 +26,7 @@ export default class Help extends Component {
                             <Text style={{lineHeight:24,color:Theme.color}} >http://m.fanlimofang.com</Text>
                         </TouchableOpacity>
                     </View>
-                    <Text style={styles.textP}>微信公众号：网贷魔方  （因“返利”被禁止申请，所以叫网贷魔方）</Text>
+                    <Text style={styles.textP}>微信公众号：魔方活动  （因“返利”被禁止申请，所以叫魔方活动）</Text>
                     <Text style={styles.textP}>APP下载请扫描二维码  （安卓版及IOS版均有效）：</Text>
                     <Text style={[styles.textH1,{marginBottom:8,marginTop:10,}]}>返利魔方APP</Text>
                     <Image source={{ uri: Api.domain + '/images/app/appdown.png' }} style={{ width: 180, height: 180 }} />

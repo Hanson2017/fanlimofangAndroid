@@ -21,5 +21,7 @@ module.exports = {
     memberModSet: host + 'memberModSet',
     memberdelcomment:host+'memberdelcomment',//删除留言
     getUserinfo: host + 'GetUserinfo', //QQ,wechat 登录
-    getInfoList: host + 'GetInfoList' //常用问答
+    getInfoList: host + 'GetInfoList', //常用问答
+    searchJson:host+'Searchjson',//搜索简易列表
+    searchActivity:host+'SearchActivity'//搜索详细列表
 }

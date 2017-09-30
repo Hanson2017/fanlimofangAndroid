@@ -27,5 +27,6 @@ var storage = new Storage({
 
 global.storage = storage;
 global.signState=null;
+global.historyKeyWords=[];
 
 

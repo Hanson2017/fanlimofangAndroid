@@ -26,6 +26,7 @@ export default class Navigation extends Component{
     }
     componentDidMount() {
      StorageLoginInfo.storageLoad(this)
+     StorageLoginInfo.storageLoadKeyWord(this)
   }
 }
 

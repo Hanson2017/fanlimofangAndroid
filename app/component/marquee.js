@@ -24,7 +24,7 @@ export default class extends Component {
     showHeadBar(index, count) {
         index++;
         Animated.timing(this.state.translateY, {
-            toValue: -40 * index,             //40为文本View的高度
+            toValue: -15 * index,             //40为文本View的高度
             duration: 600,                        //动画时间
             Easing: Easing.linear,
             delay: 4000                            //文字停留时间
@@ -40,9 +40,7 @@ export default class extends Component {
         let data = this.props.data;
         return (
             <View style={styles.container}>
-                <View style={styles.noticeIcon}>
-                    <   Icon name={'laba'} size={14} color={'#FF6666'} />
-                </View>
+               
                 <Animated.View
                     style={[styles.wrapper, {
                         transform: [{
@@ -55,7 +53,7 @@ export default class extends Component {
                     {
                         data.map((item, i) => {
                             return (
-                                <TouchableOpacity style={styles.bar} key={i}
+                                <TouchableOpacity activeOpacity={0.8}  style={styles.bar} key={i}
                                     onPress={() => {
                                         this.props.navigator.push({
                                             component: DetailPage,
@@ -70,7 +68,7 @@ export default class extends Component {
                             )
                         })
                     }
-                    <TouchableOpacity style={styles.bar}
+                    <TouchableOpacity activeOpacity={0.8} style={styles.bar}
                         onPress={() => {
                             this.props.navigator.push({
                                 component: DetailPage,
@@ -90,18 +88,14 @@ export default class extends Component {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        marginTop: 20,
-        marginBottom: 10,
-        marginLeft: 10,
+        marginTop: 8,
         marginRight: 10,
-        height: 40,
+        height: 15,
         overflow: 'hidden',
-        backgroundColor: '#f9f9f9',
-        borderRadius: 14,
     },
     noticeIcon: {
         paddingLeft: 10,
-        height: 40,
+        height: 15,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -110,13 +104,13 @@ const styles = StyleSheet.create({
       
     },
     bar: {
-        height: 40,
+        height: 15,
         justifyContent: 'center',
     },
     barText: {
         width: Dimensions.get('window').width - 30 - 16,
         marginLeft: 5,
-        color: '#666',
+        color: '#fff',
         fontSize: 12,
     },
 });

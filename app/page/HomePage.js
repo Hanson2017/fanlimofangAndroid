@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, Image, View, TouchableOpacity, ScrollView, RefreshControl, DeviceEventEmitter, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Icomoon';
+import Search from '../component/searchBtn';
 import Item from '../component/Item';
 import Api from '../util/api';
 import Theme from '../util/theme';
@@ -50,6 +51,9 @@ export default class HomePage extends Component {
             }
             return (
                 <View style={[styles.container, Platform.OS == 'android' ? { marginTop: 0 } : null]}>
+                    <Search navigator={this.props.navigator}>
+                        <MarqueeLabel data={this.state.noticeList} navigator={this.props.navigator} />
+                    </Search>
                     <ScrollView
                         refreshControl={
                             <RefreshControl
@@ -62,7 +66,7 @@ export default class HomePage extends Component {
                             <Image source={{ uri: 'http://m.fanlimofang.com/images/banner.jpg' }} resizeMode={'cover'} style={styles.bannerImg} />
                         </View>
                         <View style={styles.homeNav}>
-                            <MarqueeLabel data={this.state.noticeList} navigator={this.props.navigator} />
+
                             <View style={styles.homeNavList}>
                                 {
                                     listIcon.map((item, i) => {
@@ -244,6 +248,7 @@ var styles = StyleSheet.create({
         height: 129,
     },
     homeNav: {
+        paddingTop: 10,
         paddingBottom: 12,
         backgroundColor: '#fff',
     },
