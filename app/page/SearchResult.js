@@ -141,7 +141,7 @@ export default class SearchBtn extends React.Component {
         }
 
 
-        let url = Api.searchActivity + '?keywords=' + keywords + '&page=' + this.page + '&pagesize=' + 5;
+        let url = Api.searchActivity + '?keywords=' + keywords + '&page=' + this.page + '&pagesize=' + 20;
 
         setTimeout(() => {
             fetch(url)
