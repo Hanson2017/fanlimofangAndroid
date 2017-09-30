@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, TouchableOpacity, ScrollView, TextInput, ListView, ActivityIndicator ,DeviceEventEmitter} from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, ScrollView, TextInput, ListView, ActivityIndicator ,DeviceEventEmitter,Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Icomoon';
 import Api from '../util/api';
 import Theme from '../util/theme';
@@ -28,7 +28,7 @@ export default class SearchBtn extends React.Component {
     render() {
         var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, Platform.OS == 'android' ? { marginTop: 0 } : null]}>
                 <View style={styles.searchWp}>
                     <TouchableOpacity style={styles.backBtn} activeOpacity={0.8}
                         onPress={() => {
@@ -218,8 +218,6 @@ var styles = StyleSheet.create({
     searchText: {
         paddingLeft: 8,
         width: Theme.screenWidth * 0.8 - 40,
-        height: 32,
-        lineHeight: 32,
         fontSize: 13,
         color: '#666',
     },

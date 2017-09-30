@@ -46,7 +46,7 @@ export default class extends Component {
                         transform: [{
                             translateY: this.state.translateY
                         }],
-                        height:data.length*40
+                        height:data.length*15
                     }
                     ]}
                 >              
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         height: 15,
         overflow: 'hidden',
+        backgroundColor: '#f23b83',
     },
     noticeIcon: {
         paddingLeft: 10,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, TouchableOpacity, ScrollView, TextInput, ListView, Alert, DeviceEventEmitter } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, ScrollView, TextInput, ListView, Alert, DeviceEventEmitter,Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Icomoon';
 import Api from '../util/api';
 import Theme from '../util/theme';
@@ -27,11 +27,13 @@ export default class SearchBtn extends React.Component {
                 historys=historys.slice(0,10) 
             }
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, Platform.OS == 'android' ? { marginTop: 0 } : null]}>
                 <View style={styles.searchWp}>
                     <View style={styles.searchBtn} activeOpacity={0.8}>
                         <Icon name={'searchN'} size={15} color={'#999'} />
                         <TextInput style={styles.searchText}
+                            underlineColorAndroid="transparent"
+                            multiline = {true}
                             placeholderTextColor={'#ccc'}
                             placeholder='搜索你感兴趣的平台活动'
                             clearButtonMode={'while-editing'}
@@ -78,7 +80,7 @@ export default class SearchBtn extends React.Component {
                                         historys.map((item, i) => {
                                             return (
                                                 <TouchableOpacity style={styles.historyList}
-                                                    onPress={item.id == 0 ? this.goSearchResult.bind(this) : this.goDetail.bind(this, item.id, item.platname)}
+                                                    onPress={item.id == 0 ? this.goSearchResult.bind(this,item.title) : this.goDetail.bind(this, item.id, item.platname)}
                                                 >
                                                     <Text>{item.title}</Text>
                                                 </TouchableOpacity>
@@ -164,8 +166,15 @@ export default class SearchBtn extends React.Component {
             }
         })
     }
-    goSearchResult() {
-        let searchText = this.state.searchText;
+    goSearchResult(title) {
+        let searchText;
+        if(title){
+            searchText = title;
+        }
+        else{
+            searchText = this.state.searchText;
+        }
+        
         this.props.navigator.push({
             component: SearchResult,
             params: {
@@ -242,10 +251,9 @@ var styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     searchText: {
-        paddingLeft: 8,
+        padding: 8,
         width: Theme.screenWidth * 0.8 - 40,
         height: 32,
-        lineHeight: 32,
         fontSize: 13,
         color: '#666',
     },
