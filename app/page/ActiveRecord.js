@@ -60,7 +60,7 @@ class List extends Component {
             case 1:
                 status = '已通过'
                 paymoney = (
-                    <Text style={[styles.line20, styles.fontSs, { color: 'darkgreen' }]}>（魔方返现{data.comment.paymoney}元）</Text>
+                    <Text style={[styles.line20, styles.fontSs, { color: 'darkgreen' }]}>（魔方返现{data.comment.paymoney+''}元）</Text>
                 )
                 statusStyles = {
                     color: 'darkgreen',
@@ -125,7 +125,7 @@ class List extends Component {
                             :
                              <View style={styles.commentInfoList}>
                                 <Text style={[styles.fontS, styles.line20, styles.c999, styles.label]}>预计返利</Text>
-                                <Text style={[styles.fontS, styles.line20, styles.td, { flex: 1 ,fontWeight:'bold'}]} numberOfLines={1} >{data.plan.mfrebate}元</Text>
+                                <Text style={[styles.fontS, styles.line20, styles.td, { flex: 1 ,fontWeight:'bold'}]} numberOfLines={1} >{data.plan.mfrebate+''}元</Text>
                             </View>
                            
                     }
@@ -145,9 +145,9 @@ class List extends Component {
                                         <Text style={[styles.fontS, styles.line20, styles.td]}>当日返现</Text>
                                         :
                                         data.plan.repaydaytype == 0 ?
-                                            <Text style={[styles.fontS, styles.line20, styles.td]}>自{Util.formatDate(data.comment.addtime)}起{data.plan.repayday}个工作日内</Text>
+                                            <Text style={[styles.fontS, styles.line20, styles.td]}>自{Util.formatDate(data.comment.addtime)}起{data.plan.repayday+''}个工作日内</Text>
                                             :
-                                            <Text style={[styles.fontS, styles.line20, styles.td]}>自{Util.formatDate(data.comment.addtime)}起{data.plan.repayday}个自然日内</Text>
+                                            <Text style={[styles.fontS, styles.line20, styles.td]}>自{Util.formatDate(data.comment.addtime)}起{data.plan.repayday+''}个自然日内</Text>
                             }
                         </View>
                 }
@@ -164,9 +164,9 @@ class List extends Component {
                                         <Text style={[styles.fontS, styles.line20, styles.td, styles.c999, { lineHeight: 20 }]}>备注：{Util.formatDate(data.comment.addtime)}当日24:00返现之前，审核状态可能为“待审核”，请耐心等待</Text>
                                         :
                                         data.plan.repaydaytype == 0 ?
-                                            <Text style={[styles.fontS, styles.line20, styles.td, styles.c999, { lineHeight: 20 }]}>备注：自{Util.formatDate(data.comment.addtime)}起{data.plan.repayday}个工作日内，审核状态可能为“待审核”，请耐心等待</Text>
+                                            <Text style={[styles.fontS, styles.line20, styles.td, styles.c999, { lineHeight: 20 }]}>备注：自{Util.formatDate(data.comment.addtime)}起{data.plan.repayday+''}个工作日内，审核状态可能为“待审核”，请耐心等待</Text>
                                             :
-                                            <Text style={[styles.fontS, styles.line20, styles.td, styles.c999, { lineHeight: 20 }]}>备注：自{Util.formatDate(data.comment.addtime)}起{data.plan.repayday}个自然日内，审核状态可能为“待审核”，请耐心等待</Text>
+                                            <Text style={[styles.fontS, styles.line20, styles.td, styles.c999, { lineHeight: 20 }]}>备注：自{Util.formatDate(data.comment.addtime)}起{data.plan.repayday+''}个自然日内，审核状态可能为“待审核”，请耐心等待</Text>
                             }
                         </View>
                 }
