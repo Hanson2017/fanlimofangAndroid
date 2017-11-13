@@ -679,7 +679,7 @@ export default class CommentForm extends Component {
                             console.log(responseData)
                             if (responseData.result == 1) {
 
-                                Alert.alert(null, '回帖成功',
+                                Alert.alert(null, '回帖成功，可在个人中心查看进度。',
                                     [
                                         {
                                             text: 'OK', onPress: () => {

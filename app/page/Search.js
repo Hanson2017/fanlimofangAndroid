@@ -32,7 +32,7 @@ export default class SearchBtn extends React.Component {
                     <View style={styles.searchBtn} activeOpacity={0.8}>
                         <Icon name={'searchN'} size={15} color={'#999'} />
                         <TextInput style={styles.searchText}
-                            underlineColorAndroid="transparent"                          
+                            underlineColorAndroid="transparent"
                             placeholderTextColor={'#ccc'}
                             placeholder='搜索你感兴趣的平台活动'
                             clearButtonMode={'while-editing'}

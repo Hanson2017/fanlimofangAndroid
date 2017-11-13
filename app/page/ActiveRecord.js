@@ -142,7 +142,7 @@ class List extends Component {
                                     <Text style={[styles.fontS, styles.line20, styles.td]}>{data.plan.repaydayelse}</Text>
                                     :
                                     data.plan.repayday == 0 ?
-                                        <Text style={[styles.fontS, styles.line20, styles.td]}>当日返现</Text>
+                                        <Text style={[styles.fontS, styles.line20, styles.td]}>当日返现（周末和节假日顺延）</Text>
                                         :
                                         data.plan.repaydaytype == 0 ?
                                             <Text style={[styles.fontS, styles.line20, styles.td]}>自{Util.formatDate(data.comment.addtime)}起{data.plan.repayday+''}个工作日内</Text>

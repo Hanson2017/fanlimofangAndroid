@@ -457,7 +457,11 @@ var DetailPage = React.createClass({
     },
     getCommentData: function () {
         let that = this;
-        let url = Api.comment + '?activityid=' + this.props.id + '&page=1&pagesize=20';
+        let memberid = 0;
+        if (signState) {
+            memberid = signState.r_id;
+        }
+        let url = Api.comment + '?activityid=' + this.props.id + '&page=1&pagesize=20' + '&memberid=' + memberid;
 
         fetch(url)
             .then((response) => {

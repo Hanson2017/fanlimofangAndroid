@@ -138,7 +138,12 @@ export default class CommentsPage extends Component {
             })
         }
 
-        let url = Api.comment + '?activityid=' + this.props.activityid + '&page=' + this.page + '&pagesize=20';
+        let memberid = 0;
+        if (signState) {
+            memberid = signState.r_id;
+        }
+
+        let url = Api.comment + '?activityid=' + this.props.activityid + '&page=' + this.page + '&pagesize=20' + '&memberid=' + memberid;
 
         setTimeout(() => {
             fetch(url)
