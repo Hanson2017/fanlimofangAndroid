@@ -362,14 +362,14 @@ var DetailPage = React.createClass({
                                                     <Text style={styles.ddText}>{postinfo}</Text>
                                                 </View>
                                             </View>
-                                            {acinfo.activity.comment_picpc ?
+                                            {acinfo.activity.comment_pich5 ?
 
                                                 <View style={[styles.detailBox, Theme.mt10]}>
                                                     <View>
                                                         <Text style={styles.dtText}>回帖注册ID从哪儿找？</Text>
                                                     </View>
                                                     <View style={styles.ddView}>
-                                                        <Image resizeMode={'center'} source={{ uri: Api.domain + acinfo.activity.comment_picpc }} style={{ width: Theme.screenWidth - 24, height: 300 * Theme.screenWidth / 750 }} />
+                                                        <Image resizeMode={'center'} source={{ uri: Api.domain + acinfo.activity.comment_pich5 }} style={{ width: Theme.screenWidth - 24, height: Theme.screenWidth-24 }} />
 
                                                     </View>
                                                 </View>
@@ -644,7 +644,7 @@ const styles = StyleSheet.create({
     },
     qqOnline: {
         marginRight: 10,
-        width: 100,
+        width: (Theme.screenWidth-55)/3,
         height: 30,
         flexDirection: 'row',
         alignItems: 'center',
