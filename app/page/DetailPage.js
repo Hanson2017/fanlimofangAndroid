@@ -163,7 +163,7 @@ var DetailPage = React.createClass({
             // 方案列表
             let planList = plans.map((plan, i) => {
                 let planDetaile = that.state.isHidden[i].hidden ? null : (
-                    <Plans plans={dataSource.plans[i]} siteUrl={siteUrl} code={code} periods={periods} atype={acinfo.activity.atype} special={acinfo.activity.special} />
+                    <Plans plans={dataSource.plans[i]} siteUrl={siteUrl} code={code} investType={acinfo.activity.isrepeat} periods={periods} atype={acinfo.activity.atype} special={acinfo.activity.special} />
                 )
                 // 总收益
                 let rebateStr = null;

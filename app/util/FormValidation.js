@@ -26,7 +26,7 @@ function confirmPassword(newVal, confirmPassword, prompt) {
 
 // 手机格式验证
 function phoneValid(val, text) {
-    let reg = /^1[3|4|5|7|8]\d{9}$/;  //手机正则
+    let reg = /^1[3|4|5|7|8|9]\d{9}$/;  //手机正则
     if (text) {
         if (val == '') {
             Alert.alert('提示', text + '手机号不能为空')

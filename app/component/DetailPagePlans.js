@@ -12,6 +12,7 @@ export default class Plans extends Component {
         let siteUrl = this.props.siteUrl;
         let periods = this.props.periods;
         let special = this.props.special;
+        let investType = this.props.investType;
         let process;
 
         
@@ -58,7 +59,7 @@ export default class Plans extends Component {
                     <TouchableOpacity onPress={Util.Linked.bind(this, siteUrl)}>
                         <Text style={{ color: 'red', fontSize: 11 }}>直达链接</Text>
                     </TouchableOpacity>
-                    <Text style={{ color: '#666', fontSize: 11 }}>进入网站并注册</Text>
+                    <Text style={{ color: '#666', fontSize: 11 }}>进入网站{investType!=1?'并注册':null}</Text>
                 </View>
             )
         }
