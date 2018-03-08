@@ -354,6 +354,16 @@ var DetailPage = React.createClass({
                                         </View>
                                         :
                                         <View>
+                                            {acinfo.activity.img_att_h5 != null && acinfo.activity.img_att_h5 != ''  ?
+
+                                                <View style={[styles.detailBox, Theme.mt10]}>
+                                                    <View style={styles.ddView}>
+                                                        <Image resizeMode={'center'} source={{ uri: Api.domain + acinfo.activity.img_att_h5 }} style={{ width: Theme.screenWidth - 24, height: Theme.screenWidth - 24 }} />
+
+                                                    </View>
+                                                </View>
+                                                : null
+                                            }
                                             <View style={[styles.detailBox, Theme.mt10]}>
                                                 <View>
                                                     <Text style={styles.dtText}>回帖说明：</Text>
@@ -362,6 +372,7 @@ var DetailPage = React.createClass({
                                                     <Text style={styles.ddText}>{postinfo}</Text>
                                                 </View>
                                             </View>
+                                            
                                             {acinfo.activity.comment_pich5 ?
 
                                                 <View style={[styles.detailBox, Theme.mt10]}>
@@ -369,7 +380,7 @@ var DetailPage = React.createClass({
                                                         <Text style={styles.dtText}>回帖注册ID从哪儿找？</Text>
                                                     </View>
                                                     <View style={styles.ddView}>
-                                                        <Image resizeMode={'center'} source={{ uri: Api.domain + acinfo.activity.comment_pich5 }} style={{ width: Theme.screenWidth - 24, height: Theme.screenWidth-24 }} />
+                                                        <Image resizeMode={'center'} source={{ uri: Api.domain + acinfo.activity.comment_pich5 }} style={{ width: Theme.screenWidth - 24, height: Theme.screenWidth - 24 }} />
 
                                                     </View>
                                                 </View>
@@ -644,7 +655,7 @@ const styles = StyleSheet.create({
     },
     qqOnline: {
         marginRight: 10,
-        width: (Theme.screenWidth-55)/3,
+        width: (Theme.screenWidth - 55) / 3,
         height: 30,
         flexDirection: 'row',
         alignItems: 'center',
