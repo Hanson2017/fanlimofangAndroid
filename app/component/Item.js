@@ -23,7 +23,6 @@ export default class Item extends Component {
 
         let risklevel = Common.risklevel(data.plat.risklevel)  //风险等级
         let investType = Common.investType(data.activity.isrepeat)  //投资类型
-
         // 是否结束
         switch (data.activity.status) {
             case 1:
@@ -34,7 +33,12 @@ export default class Item extends Component {
                         (
                             <View style={[Theme.flexDrow]}>
                                 <Tags tagsName={'风控分:' + data.plat.riskscore} styles={styles} />
-                                <Tags tagsName={risklevel} styles={styles} />
+                                {
+                                    data.plat.noshowrisk != 1 ? 
+                                    <Tags tagsName={risklevel} styles={styles} />
+                                    :
+                                    null
+                                }
                             </View>
                         )
                 }

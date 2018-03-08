@@ -100,7 +100,12 @@ var DetailPage = React.createClass({
                             (
                                 <View style={[Theme.flexDrow, { marginTop: 10 }]}>
                                     <Tags tagsName={'风控分:' + acinfo.plat.riskscore} styles={styles} />
-                                    <Tags tagsName={risklevel} styles={styles} />
+                                    {
+                                        acinfo.plat.noshowrisk != 1 ? 
+                                        <Tags tagsName={risklevel} styles={styles} />
+                                        :
+                                        null
+                                    }
                                 </View>
                             )
                     }
