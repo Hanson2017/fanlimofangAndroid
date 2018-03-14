@@ -39,11 +39,11 @@ module.exports = {
         let investType;
         switch (val) {
             case 0:
-                investType = '首投'
+                investType = '首次出借'
                 break;
 
             case 1:
-                investType = '复投'
+                investType = '多次出借'
                 break;
         }
         return investType;

@@ -110,8 +110,8 @@ export default class HomePage extends Component {
                         </View>
                         <View>
                             <GroupNew title={'最新上线活动'} lists={this.state.dataSourceNew} navigator={this.props.navigator} name={'news'} />
-                            <Group title={'热门首投活动'} lists={this.state.dataSourceFirst} navigator={this.props.navigator} name={'hot'} />
-                            <Group title={'热门复投活动'} lists={this.state.dataSourceRepeat} navigator={this.props.navigator} name={'repeat'} />
+                            <Group title={'热门首次出借活动'} lists={this.state.dataSourceFirst} navigator={this.props.navigator} name={'hot'} />
+                            <Group title={'热门多次出借活动'} lists={this.state.dataSourceRepeat} navigator={this.props.navigator} name={'repeat'} />
                         </View>
                     </ScrollView>
 
@@ -190,7 +190,7 @@ class GroupNew extends Component {
                         <Image source={{ uri: uri }} style={{ width: 70, height: 28 }} />
                     </View>
                     <View style={[Theme.flexDrow, { alignItems: 'center', }]}>
-                        <Text style={styles.ItemNewText}>投{list.activity.invest + ''}获得</Text>
+                        <Text style={styles.ItemNewText}>出借{list.activity.invest + ''}获得</Text>
                         <Text style={[styles.ItemNewText, { color: 'red' }]}>{list.activity.rebate + ''}</Text>
                     </View>
                     <View style={Theme.flexDrow}>

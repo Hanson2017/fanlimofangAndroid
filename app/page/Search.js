@@ -125,7 +125,7 @@ export default class SearchBtn extends React.Component {
                 key={sectionID + rowID}
             >
                 <Text style={[styles.platname, { color: '#2a343e' }]}>{rowData.platname}</Text>
-                <Text style={styles.platType}>（{rowData.isrepeat == 0 ? '首投' : '复投'}）</Text>
+                <Text style={styles.platType}>（{rowData.isrepeat == 0 ? '首次出借' : '多次出借'}）</Text>
             </TouchableOpacity>
 
         )

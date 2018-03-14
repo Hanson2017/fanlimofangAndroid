@@ -110,10 +110,10 @@ class List extends Component {
                             :
                             null
                     }
-                    <Comm title={'投资方案'} val={'第' + data.comment.periodnumber + '期,方案' + data.comment.plannumber} />
+                    <Comm title={'出借方案'} val={'第' + data.comment.periodnumber + '期,方案' + data.comment.plannumber} />
                     {
                         comment_field.indexOf('investdate') >= 0 ?
-                            <Comm title={'投资日期'} val={investdate} />
+                            <Comm title={'出借日期'} val={investdate} />
                             :
                             null
                     }

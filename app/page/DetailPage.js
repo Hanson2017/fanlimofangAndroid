@@ -229,10 +229,10 @@ var DetailPage = React.createClass({
             postinfo += '所选择方案，';
 
             if (comment_field.indexOf('investdate') >= 0) {
-                postinfo += '投资日期，';
+                postinfo += '出借日期，';
             }
             if (comment_field.indexOf('img_invest') >= 0) {
-                postinfo += '投资截图，';
+                postinfo += '出借截图，';
             }
             postinfo += '支付宝帐号';
 
@@ -279,7 +279,7 @@ var DetailPage = React.createClass({
                             <View onStartShouldSetResponderCapture={(e) => { dismissKeyboard(); }}>
                                 <View style={[styles.detailBox, { borderTopWidth: 0 }]}>
                                     <View style={Theme.flexDrow}>
-                                        <Tags tagsName={investType + '活动'} styles={styles} />
+                                        <Tags tagsName={investType} styles={styles} />
                                         {ishighest}
                                         {isprotect}
                                         {repaydays}
@@ -294,15 +294,15 @@ var DetailPage = React.createClass({
                                     </View>
                                 </View>
                                 {/*top end*/}
-                                <Title title={'投资方案'} />
+                                <Title title={'出借方案'} />
                                 <View>
                                     <View style={[Theme.flexDrow, { backgroundColor: '#fff' }]}>
                                         <View style={[styles.planTd1, styles.planTd]}><Text style={styles.planTdText}>方案</Text></View>
-                                        <View style={[styles.planTd2, styles.planTd]}><Text style={styles.planTdText}>期限</Text></View>
-                                        <View style={[styles.planTd3, styles.planTd]}><Text style={styles.planTdText}>投资项目</Text></View>
+                                        <View style={[styles.planTd2, styles.planTd]}><Text style={styles.planTdText}>服务期限</Text></View>
+                                        <View style={[styles.planTd3, styles.planTd]}><Text style={styles.planTdText}>出借项目</Text></View>
                                         <View style={[styles.planTd4, styles.planTd]}><Text style={styles.planTdText}>充值金额</Text></View>
                                         <View style={[styles.planTd5, styles.planTd]}><Text style={styles.planTdText}>魔方返利</Text></View>
-                                        <View style={[styles.planTd]}><Text style={styles.planTdText}>总收益</Text></View>
+                                        <View style={[styles.planTd]}><Text style={styles.planTdText}>总回报</Text></View>
                                     </View>
                                     {planList}
                                 </View>
@@ -347,7 +347,7 @@ var DetailPage = React.createClass({
                                     </View>
                                     <View style={styles.ddView}>
                                         <Text style={styles.ddText}>
-                                            返利魔方仅为信息平台，本身不吸纳用户资金。活动平台不保证100%安全，如出现意外情况（包括但不局限于平台提现困难/逾期/倒闭/跑路等导致无法拿回本金的情况），如该活动享受魔方保障，返利魔方仅在该活动注明的保障期内（自用户通过返利魔方投资之日起计算保障期限），按照赔付率对部分本金进行赔付。除此以外，返利魔方不承担任何责任。
+                                            返利魔方仅为信息平台，本身不吸纳用户资金。活动平台不保证100%安全，如出现意外情况（包括但不局限于平台提现困难/逾期/倒闭/跑路等导致无法拿回本金的情况），如该活动享受魔方保障，返利魔方仅在该活动注明的保障期内（自用户通过返利魔方出借之日起计算保障期限），按照赔付率对部分本金进行赔付。除此以外，返利魔方不承担任何责任。
                                     </Text>
                                     </View>
                                 </View>

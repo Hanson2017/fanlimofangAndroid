@@ -114,7 +114,7 @@ export default class Item extends Component {
                     <View style={[Theme.flexDrow, Theme.mt15, { justifyContent: 'space-between', }]}>
                         <View style={[Theme.flexDrow]}>
                             <View style={{ width: (Theme.screenWidth - 10) / 3 }}>
-                                <View><Text style={Theme.c666}>投{data.activity.invest + ''}获得</Text></View>
+                                <View><Text style={Theme.c666}>出借{data.activity.invest + ''}获得</Text></View>
                                 <View style={Theme.mt5}><Text style={[Theme.red, styles.font17]}>{data.activity.rebate + ''}</Text></View>
                             </View>
                             <View style={{ width: Theme.screenWidth / 3 }}>

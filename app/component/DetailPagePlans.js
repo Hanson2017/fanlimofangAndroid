@@ -85,10 +85,10 @@ export default class Plans extends Component {
                 </View>
                 <View style={styles.row}>
                     <Text style={styles.rowLabel}>保障时间:</Text>
-                    <Text style={styles.rowCon}>{plans.protectday + ''}天（从投资当日起算）</Text>
+                    <Text style={styles.rowCon}>{plans.protectday + ''}天（从出借当日起算）</Text>
                 </View>
                 <View style={styles.row}>
-                    <Text style={{ color: '#666', fontSize: 11 }}>投资流程：</Text>
+                    <Text style={{ color: '#666', fontSize: 11 }}>出借流程：</Text>
                 </View>
                 {process}
                 <View>

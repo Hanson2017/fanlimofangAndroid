@@ -123,7 +123,7 @@ export default class CommentForm extends Component {
 
         if (comment_field.indexOf('investdate') >= 0) {
             if (Platform.OS === 'ios') {
-                investdateView = this.CommentFormList('投资日期', {},
+                investdateView = this.CommentFormList('出借日期', {},
                     {
                         value: that.state.listData[i].investdate,
                         onPress: this.props.isShowCalendar.bind(this)
@@ -132,7 +132,7 @@ export default class CommentForm extends Component {
                 )
             }
             else {
-                investdateView = this.CommentFormList('投资日期', {},
+                investdateView = this.CommentFormList('出借日期', {},
                     {
                         value: that.state.listData[i].investdate,
                         onPress: this.showPicker.bind(this, i)
@@ -155,7 +155,7 @@ export default class CommentForm extends Component {
             investImgView = (
                 <View style={[styles.uploadImgView, this.state.comformType == 'Single' ? { marginBottom: 20 } : null]}>
                     <View>
-                        <Text style={styles.uploadImgViewText}>投资截图</Text>
+                        <Text style={styles.uploadImgViewText}>出借截图</Text>
                         <TouchableOpacity activeOpacity={0.7}
                             onPress={() => {
                                 this.setState({
@@ -623,7 +623,7 @@ export default class CommentForm extends Component {
             }
             // investdate 判断
             if (comment_field.indexOf('investdate') >= 0) {
-                if (FormValidation.empty(listData[j].investdate, '投资日期不能为空') == false) {
+                if (FormValidation.empty(listData[j].investdate, '出借日期不能为空') == false) {
                     return;
                 }
             }

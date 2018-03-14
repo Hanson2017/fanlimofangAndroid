@@ -74,7 +74,7 @@ export default class ActiveRecordEdit extends Component {
                 var investdateView =
 
                     <TxtInput
-                        label={'投资日期'}
+                        label={'出借日期'}
                         value={this.state.investdate}
                         ViewInput={true}
                         onPress={Platform.OS === 'ios' ? this._selectData.bind(this) : this.showPicker.bind(this)}

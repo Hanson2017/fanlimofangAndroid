@@ -55,7 +55,7 @@ export default class Comment extends Component {
         }
         if (commentField.indexOf('investdate') >= 0) {
             var investdateView = (
-                <Text style={styles.commentListBdText}>投资日期：{investdate}</Text>
+                <Text style={styles.commentListBdText}>出借日期：{investdate}</Text>
             )
         }
 

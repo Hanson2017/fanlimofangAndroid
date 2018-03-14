@@ -21,7 +21,7 @@ export default class TabBar extends Component {
         super(props)
         this.state = {
             selectedTab: 'home',
-            tabName: ['首页', '首投', '复投', '问答', '我的']
+            tabName: ['首页', '首次', '多次', '问答', '我的']
         }
     }
     render() {
