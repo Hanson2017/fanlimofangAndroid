@@ -48,7 +48,8 @@ export default class Plans extends Component {
                         <Text style={{ color: 'red', fontSize: 11 }}>直达链接</Text>
 
                     </TouchableOpacity>
-                    <Text style={{ color: '#666', fontSize: 11 }}>进入网站并注册，邀请码填写 <Text  style={{ color: 'red' }}>{this.props.code + ''}</Text></Text>
+                    <Text style={{ color: '#666', fontSize: 11 }}>进入网站并注册，邀请码填写</Text>
+                    <Text  style={{ color: 'red' }}>{this.props.code + ''}</Text>
                 </View>
             )
         }
@@ -127,9 +128,10 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     row: {
+        marginBottom:6,
         flexDirection: 'row',
-        height: 24,
         alignItems: 'center',
+        flexWrap: 'wrap',
     },
     rowLabel: {
         width: 60,

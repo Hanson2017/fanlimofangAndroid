@@ -89,7 +89,7 @@ export default class ActiveRecordEdit extends Component {
                     <Header navigator={this.props.navigator} headerText={'活动记录修改'} />
                     <NewSelect ref="select" options={selectList} />
                     <NewCalendar ref="Calendar" />
-                    <View style={styles.content}>
+                    <ScrollView style={styles.content}>
                         <View style={styles.FormContainer}>
 
                             {useridView}
@@ -133,7 +133,7 @@ export default class ActiveRecordEdit extends Component {
                             <SubmitBtn value={'保存'} onPress={this.onSubmit.bind(this)} />
                         </View>
 
-                    </View>
+                    </ScrollView>
                 </View>
             )
         }
