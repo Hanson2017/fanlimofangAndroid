@@ -3,7 +3,7 @@ import { Text, StyleSheet, Image, View, TouchableOpacity, ScrollView,Platform } 
 
 import Icon from 'react-native-vector-icons/Icomoon';
 import Item from '../component/item';
-import Loading from '../../app/component/Loading';
+import Loading from '../../app/component/loading';
 import Util from '../../app/util/util'
 
 class Header extends Component {

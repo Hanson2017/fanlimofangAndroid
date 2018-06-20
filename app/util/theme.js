@@ -29,7 +29,7 @@ module.exports = {
         marginTop: 20,
     },
     red: {
-        color: 'red'
+        color: '#E62344'
     },
     c666: {
         color: '#666',

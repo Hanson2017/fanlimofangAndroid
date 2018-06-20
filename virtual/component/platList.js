@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, ListView, RefreshControl, ActivityIndicator } f
 
 import Item from './platItem'
 import Header from './header'
-import Loading from '../../app/component/Loading';
+import Loading from '../../app/component/loading';
 import Api from '../util/api'
 
 export default class List extends Component {

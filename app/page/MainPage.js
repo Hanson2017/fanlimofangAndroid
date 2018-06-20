@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, Platform, BackAndroid, ToastAndroid, DeviceEventEmitter } from 'react-native';
-import TabBar from '../component/TabBar'
+import TabBar from './tabBar'
 import StorageLoginInfo from '../config/storageLogin'
 export default class MainScene extends Component {
     render() {

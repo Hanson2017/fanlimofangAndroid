@@ -83,6 +83,9 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+//2.1.5,，2.1.6对应versionCode 112都可以热更新
+//2.1.7对应versionCode 116都可以热更新
+//2.1.8对应versionCode 118都可以热更新
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -91,8 +94,8 @@ android {
         applicationId "org.zywx.wbpalmstar.widgetone.uex11575732"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 112
-        versionName "2.1.6"
+        versionCode 120
+        versionName "2.2.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }

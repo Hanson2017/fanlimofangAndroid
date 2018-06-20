@@ -32,9 +32,14 @@ module.exports = {
                                                 ress.json()
                                                     .then((ressData) => {
                                                         if (ressData.ret == 0) {
-
-                                                            let urlN = Api.getUserinfo + '?fromtype=qq&connectid=' + result.openid + '&username=' + ressData.nickname + '&unionid=' + callbackData.unionid;;
-
+                                                            let figureurl_qq;
+                                                            if (ressData.figureurl_qq_2 != '' && ressData.figureurl_qq_2.length > 0) {
+                                                                figureurl_qq = ressData.figureurl_qq_2;
+                                                            }
+                                                            else {
+                                                                figureurl_qq = ressData.figureurl_qq_1;
+                                                            }    
+                                                            let urlN = Api.getUserinfo + '?fromtype=qq&connectid=' + result.openid + '&username=' + ressData.nickname + '&avatar=' + figureurl_qq+'&unionid=' + callbackData.unionid;    
                                                             fetch(urlN)
                                                                 .then((res) => {
                                                                     if (res.ok) {
@@ -105,9 +110,7 @@ module.exports = {
                                             if (resInfo.ok) {
                                                 resInfo.json()
                                                     .then((resInfo) => {
-
-                                                        let urlN = Api.getUserinfo + '?fromtype=wx&connectid=' + openid + '&username=' + resInfo.nickname + '&unionid=' + resInfo.unionid;
-                                                        console.log(resInfo)
+                                                        let urlN = Api.getUserinfo + '?fromtype=wx&connectid=' + openid + '&username=' + resInfo.nickname + '&unionid=' + resInfo.unionid + '&avatar=' + resInfo.headimgurl;                                                   
                                                         fetch(urlN)
                                                             .then((ress) => {
                                                                 if (ress.ok) {

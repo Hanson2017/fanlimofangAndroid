@@ -5,7 +5,7 @@ import Item from '../component/item'
 import Detail from './detail'
 import Header from '../component/header'
 import Swiper from 'react-native-swiper';
-import Loading from '../../app/component/Loading';
+import Loading from '../../app/component/loading';
 import Theme from '../../app/util/theme';
 
 export default class List extends Component {

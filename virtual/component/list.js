@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, ListView, RefreshControl, ActivityIndicator } f
 
 import Item from './item'
 import Header from './header'
-import Loading from '../../app/component/Loading';
+import Loading from '../../app/component/loading';
 
 export default class List extends Component {
     constructor(props) {

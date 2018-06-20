@@ -18,7 +18,7 @@ export default class Navigation extends Component{
         )
     }
     configureScene(route, routeStack){
-        return Navigator.SceneConfigs.FloatFromRight;
+        return Navigator.SceneConfigs.PushFromRight;
     }
     renderScene(route,navigator){
         let Component=route.component;

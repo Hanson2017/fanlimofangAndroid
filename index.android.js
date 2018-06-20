@@ -14,7 +14,7 @@ import {
 import codePush from 'react-native-code-push'
 import Navigation from '../fanlimofang/app/config/entry'
 import VirtualMain from './virtual/main'
-import Loading from './app/component/Loading'
+import Loading from './app/component/loading'
 
 
 export default class fanlimofang extends Component {
