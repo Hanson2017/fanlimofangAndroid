@@ -142,8 +142,8 @@ var styles = StyleSheet.create({
         marginRight: 20,
     },
     logo: {
-        width: 84.5,
-        height: 20,
+        width: 110,
+        height: 26,
     },
     banner: {
         height: 129,

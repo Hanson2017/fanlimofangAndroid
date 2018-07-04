@@ -16,7 +16,7 @@ export default class SearchBtn extends React.Component {
                         })
                     }}
                 >
-                    <Icon name={'searchN'} size={11} color={'#999'} />
+                    <Icon name={'searchN'} size={12} color={'#999'} />
                     <Text style={styles.searchText}>搜索你感兴趣的平台活动</Text>
                 </TouchableOpacity>
                 {this.props.children}
@@ -34,8 +34,8 @@ var styles = StyleSheet.create({
         paddingLeft: 6,
         flexDirection: 'row',
         alignItems: 'center',
-        height: 20,
-        borderRadius: 5,
+        height: 26,
+        borderRadius: 8,
         backgroundColor: '#fff',
     },
     searchText: {

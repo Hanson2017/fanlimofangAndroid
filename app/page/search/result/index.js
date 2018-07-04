@@ -42,7 +42,7 @@ export default class SearchBtn extends React.Component {
                             this.props.navigator.pop();
                         }}
                     >
-                        <Icon name={'searchN'} size={11} color={'#999'} />
+                        <Icon name={'searchN'} size={12} color={'#999'} />
                         <Text style={styles.searchText}>{this.props.searchText}</Text>
                     </TouchableOpacity>
 
@@ -212,7 +212,7 @@ var styles = StyleSheet.create({
         paddingLeft: 6,
         flexDirection: 'row',
         alignItems: 'center',
-        height: 20,
+        height: 26,
         borderRadius: 5,
         backgroundColor: '#fff',
     },
@@ -224,7 +224,7 @@ var styles = StyleSheet.create({
     },
     backBtn: {
         width: 30,
-        height: 20,
+        height: 26,
         flexDirection: 'row',
         alignItems:'center',
         justifyContent: 'flex-start',

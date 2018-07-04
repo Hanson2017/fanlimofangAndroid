@@ -30,7 +30,7 @@ export default class SearchBtn extends React.Component {
             <View style={[styles.container, Platform.OS == 'android' ? { marginTop: 0 } : null]}>
                 <View style={[styles.searchWp,Platform.OS=='android'?{paddingTop:12}:null]}>
                     <View style={styles.searchBtn} activeOpacity={0.8}>
-                        <Icon name={'searchN'} size={11} color={'#999'} />
+                        <Icon name={'searchN'} size={12} color={'#999'} />
                         <TextInput style={styles.searchText}
                             underlineColorAndroid="transparent"
                             placeholderTextColor={'#ccc'}
@@ -246,15 +246,15 @@ var styles = StyleSheet.create({
         paddingLeft: 6,
         flexDirection: 'row',
         alignItems: 'center',
-        height: 20,
-        borderRadius: 5,
+        height: 26,
+        borderRadius: 8,
         backgroundColor: '#fff',
     },
     searchText: {
         padding:0,
         marginLeft: 5,
         flex: 1,
-        height: 20,
+        height: 26,
         fontSize: 10,
         color: '#666',
     },
