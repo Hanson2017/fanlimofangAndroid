@@ -149,7 +149,16 @@ export default class DetailPage extends Component {
                             </View>
                         </ScrollView>
                     </View>
-                    <BottomBtn status={acinfo.activity.status} disabled={acinfo.activity.status == 1 ? false : true} value={acinfo.activity.status == 1 ? '直达链接' : '已结束'} onPress={Util.Linked.bind(this, siteUrl)} />
+                    <TouchableOpacity
+                        style={[styles.submitBtn,acinfo.activity.status==2?styles.submitBtnOver:null]}
+                        activeOpacity={0.7}
+                        onPress={()=>{Util.Linked(siteUrl)}}
+                        disabled={acinfo.activity.status == 1 ? false : true}
+                    >
+                        <Text style={[styles.submitBtnText]}>{acinfo.activity.status == 1 ? '直达链接' : '已结束'}</Text>
+                        <Text style={styles.submitBtnTT}>（网贷有风险，出借需谨慎）</Text>
+                    </TouchableOpacity>
+                    
                 </View >
             )
         }
@@ -294,6 +303,27 @@ const styles = StyleSheet.create({
     moreCommentText: {
         color: '#E62344',
         fontSize: 11,
+    },
+    submitBtn: {
+        position:'relative',
+        height: 46,
+        backgroundColor: Theme.color,
+        alignItems: 'center',
+        justifyContent: 'center',
+
+    },
+    submitBtnOver: {
+        backgroundColor: '#ccc',
+    },
+    submitBtnText: {
+        fontSize: 16,
+        color: '#fff',
+    },
+    submitBtnTT:{
+        paddingTop:4,
+        fontSize:10,
+        color:'#fff',
+        opacity:0.7
     },
 
 })
